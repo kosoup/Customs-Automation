@@ -1,0 +1,21 @@
+{
+  "description": "기본 템플릿 - 키워드 기반 자동 탐지",
+  "file_type": "both",
+
+  "seller_keywords": ["seller", "shipper", "exporter", "from", "수출자", "송화인"],
+  "buyer_keywords": ["buyer", "consignee", "importer", "to", "수입자", "수하인"],
+  "invoice_number_keywords": ["invoice no", "invoice number", "inv no", "inv.", "인보이스번호"],
+  "invoice_date_keywords": ["invoice date", "date", "발행일"],
+  "incoterms_keywords": ["incoterms", "terms", "delivery terms", "trade terms"],
+  "currency_keywords": ["currency", "통화"],
+  "total_keywords": ["total", "grand total", "total amount", "합계", "총액"],
+
+  "item_table_headers": {
+    "product_name_en": ["description", "item", "goods", "product", "commodity", "품명"],
+    "hscode": ["hs code", "hs-code", "hscode", "tariff", "품목번호"],
+    "quantity": ["qty", "quantity", "수량"],
+    "unit": ["unit", "uom", "단위"],
+    "unit_price": ["unit price", "price", "rate", "단가"],
+    "amount": ["amount", "total", "value", "금액"]
+  }
+}

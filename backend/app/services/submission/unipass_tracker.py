@@ -1,0 +1,99 @@
+"""
+관세청 UNI-PASS Open API - 수출통관 상태 조회.
+API 문서: https://unipass.customs.go.kr/openapi/
+
+주요 API:
+  - 수출신고수리내역조회 (expDclrAceptDtlsQry)
+  - 화물통관진행정보 (cargCclsQry)
+
+응답 형식: XML
+인증: API 키를 URL 파라미터로 전달
+"""
+import xml.etree.ElementTree as ET
+from typing import Optional
+
+import httpx
+
+from app.config import settings
+
+UNIPASS_BASE_URL = "https://unipass.customs.go.kr/ext/rest"
+
+
+def _parse_status_xml(xml_text: str) -> dict:
+    """UNI-PASS 응답 XML을 딕셔너리로 파싱."""
+    try:
+        root = ET.fromstring(xml_text)
+        result = {}
+
+        # 공통 응답 코드
+        code_el = root.find(".//tCd") or root.find(".//errCd")
+        msg_el = root.find(".//tMsg") or root.find(".//errMsg")
+        result["code"] = code_el.text if code_el is not None else None
+        result["message"] = msg_el.text if msg_el is not None else None
+
+        # 수출신고 상태
+        status_el = root.find(".//expDclrStts") or root.find(".//dclrStts")
+        result["declaration_status"] = status_el.text if status_el is not None else None
+
+        # 수리번호
+        acpt_el = root.find(".//expDclrAceptNo") or root.find(".//aceptNo")
+        result["accept_number"] = acpt_el.text if acpt_el is not None else None
+
+        # 수리일자
+        acpt_dt = root.find(".//expDclrAceptDt") or root.find(".//aceptDt")
+        result["accept_date"] = acpt_dt.text if acpt_dt is not None else None
+
+        result["raw"] = xml_text
+        return result
+    except ET.ParseError:
+        return {"code": "PARSE_ERROR", "message": "XML 파싱 실패", "raw": xml_text}
+
+
+async def track_by_invoice(invoice_number: str) -> dict:
+    """
+    인보이스 번호로 수출신고 상태를 조회한다.
+    API 키 미설정 시 설정 안내 메시지를 반환한다.
+    """
+    api_key = settings.UNIPASS_API_KEY
+    if not api_key:
+        return {
+            "code": "NOT_CONFIGURED",
+            "message": "UNIPASS_API_KEY가 설정되지 않았습니다. .env 파일에 키를 입력하세요.",
+            "declaration_status": None,
+            "accept_number": None,
+        }
+
+    url = (
+        f"{UNIPASS_BASE_URL}/expDclrAceptDtlsQry/retrieveExpDclrAceptDtls"
+        f"?crkyCd={api_key}&invNo={invoice_number}"
+    )
+
+    async with httpx.AsyncClient(timeout=15) as client:
+        resp = await client.get(url)
+        resp.raise_for_status()
+
+    return _parse_status_xml(resp.text)
+
+
+async def track_by_ref(submission_ref: str) -> dict:
+    """
+    접수번호(수리번호)로 화물 통관 상태를 조회한다.
+    """
+    api_key = settings.UNIPASS_API_KEY
+    if not api_key:
+        return {
+            "code": "NOT_CONFIGURED",
+            "message": "UNIPASS_API_KEY가 설정되지 않았습니다.",
+            "declaration_status": None,
+        }
+
+    url = (
+        f"{UNIPASS_BASE_URL}/cargCclsQry/retrieveCargCcls"
+        f"?crkyCd={api_key}&mblNo={submission_ref}"
+    )
+
+    async with httpx.AsyncClient(timeout=15) as client:
+        resp = await client.get(url)
+        resp.raise_for_status()
+
+    return _parse_status_xml(resp.text)
