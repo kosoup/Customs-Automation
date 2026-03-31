@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import DeclarationList from "./pages/DeclarationList";
 import DeclarationEdit from "./pages/DeclarationEdit";
 import InvoiceUpload from "./pages/InvoiceUpload";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/invoices/upload" element={<InvoiceUpload />} />
             <Route path="/declarations/new" element={<DeclarationEdit />} />
             <Route path="/declarations/:id" element={<DeclarationEdit />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>

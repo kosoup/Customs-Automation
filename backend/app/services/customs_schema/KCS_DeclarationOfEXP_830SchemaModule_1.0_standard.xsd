@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Module: KCS_DeclarationOfEXP_830
+Name: 수출신고서
+Agency: Korea Customs Service
+KCSBusinessType : EXP
+AgencyAssignedCustomizedDocumentName : GOVCBR_830
+Version: 1.0 Rev. 0
+Last change: 2017.10.23
+Author : jm.chae
+
+Change :
+ 
+ Copyright (C) Korea Customs Service (2014). All Rights Reserved. 
+-->
+<xsd:schema xmlns="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_830SchemaModule:1:0" xmlns:ccts="urn:un:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:2" xmlns:ds="urn:wco:datamodel:WCO:DS:1" xmlns:kcsds="urn:kr:gov:kcs:data:standard:KCSDS:1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_830SchemaModule:1:0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:import namespace="urn:wco:datamodel:WCO:DS:1" schemaLocation="../../../wco/common/DS_1p0.xsd"/>
+	<xsd:import namespace="urn:kr:gov:kcs:data:standard:KCSDS:1" schemaLocation="../../common/KCSDS_1p0.xsd"/>
+	<xsd:element name="Declaration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<!--신고세관/과-->
+				<xsd:element name="DeclarationOfficeID" type="ds:DeclarationDeclarationOfficeIDType" minOccurs="0"/>
+				<!--전자문서 기능-->
+				<xsd:element name="FunctionCode" type="ds:DeclarationFunctionCodeType" minOccurs="0"/>
+				<!--총란수-->
+				<xsd:element name="GoodsItemQuantity" type="ds:DeclarationGoodsItemQuantityType"/>
+				<!--수출신고번호-->
+				<xsd:element name="ID" type="ds:DeclarationIdentificationIDType"/>
+				<!--총신고가격 (원화/미화)-->
+				<xsd:element name="InvoiceAmount" type="ds:DeclarationInvoiceAmountType"/>
+				<!--신고일자(CCYYMMDD)-->
+				<xsd:element name="IssueDateTime" type="ds:DeclarationIssueDateTimeType" minOccurs="0"/>
+				<!--총중량합계(단위)-->
+				<xsd:element name="TotalGrossMassMeasure" type="ds:DeclarationTotalGrossMassMeasureType"/>
+				<!--총포장갯수-->
+				<xsd:element name="TotalPackageQuantity" type="ds:DeclarationTotalPackageQuantityType"/>
+				<!--문서형태구분-->
+				<xsd:element name="TypeCode" type="ds:DeclarationTypeCodeType"/>
+				<!--거래구분-->
+				<xsd:element name="TransactionNatureCode" type="ds:DeclarationTransactionNatureCodeType"/>
+				<!--응답요청사항-->
+				<xsd:element name="ResponseTypeCode" type="kcsds:DeclarationResponseTypeCodeType"/>
+				<xsd:element name="AdditionalCode" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--반송사유-->
+							<xsd:element name="ReturnReasonCode" type="kcsds:AdditionalCodeReturnReasonCodeType" minOccurs="0"/>
+							<!--화물관리번호 전송구분-->
+							<xsd:element name="ReturnScopeCode" type="kcsds:AdditionalCodeReturnScopeCodeType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="AdditionalInformation" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--임시개청사전통보여부-->
+							<xsd:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType" minOccurs="0"/>
+							<!--신고인 기재란-->
+							<xsd:element name="StatementDescription" type="ds:AdditionalInformationStatementDescriptionTextType" minOccurs="0"/>
+							<!--보세운송기간(CCYYMMDDCCYYMMDD)-->
+							<xsd:element name="PeriodDateTime" type="kcsds:AdditionalInformationPeriodDateTimeType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Agent">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--수출대행자(통관고유부호(380)/사업장일련번호(KTS))-->
+							<xsd:element name="ID" type="ds:AgentIdentificationIDType" minOccurs="0" maxOccurs="2"/>
+							<!--수출대행자상호-->
+							<xsd:element name="Name" type="ds:AgentNameTextType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="BorderTransportMeans" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--선박명(편명)-->
+							<xsd:element name="Name" type="ds:BorderTransportMeansNameTextType" minOccurs="0"/>
+							<!--출항예정일자-->
+							<xsd:element name="EstimatedDepartureDateTime" type="kcsds:BorderTransportMeansEstimatedDepartureDateTimeType" minOccurs="0"/>
+							<xsd:element name="TransportEquipment" minOccurs="0" maxOccurs="99">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--컨테이너번호 일련번호-->
+										<xsd:element name="SequenceNumeric" type="ds:TransportEquipmentSequenceNumericType" minOccurs="0"/>
+										<!--컨테이너번호-->
+										<xsd:element name="ID" type="ds:TransportEquipmentIdentificationIDType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Carrier" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--선박회사(항공사)부호-->
+							<xsd:element name="ID" type="ds:CarrierIdentificationIDType" minOccurs="0"/>
+							<!--선박회사(항공사)이름-->
+							<xsd:element name="Name" type="ds:CarrierNameTextType" minOccurs="0"/>
+							<xsd:element name="Contact" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--운송(신고)인-->
+										<xsd:element name="Name" type="ds:ContactNameTextType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="CurrencyExchange" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--환율-->
+							<xsd:element name="RateNumeric" type="ds:CurrencyExchangeRateNumericType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="CustomsProcedure">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--신고구분-->
+							<xsd:element name="ProcessTypeCode" type="kcsds:CustomsProcedureProcessTypeCodeType"/>
+							<!--수출종류-->
+							<xsd:element name="TypeCode" type="kcsds:CustomsProcedureTypeCodeType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Consignment">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ConsignmentItem">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Commodity">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--결제금액(통화단위)-->
+													<xsd:element name="ValueAmount" type="ds:CommodityValueAmountType"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="PreviousDocument" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--반입번호-->
+													<xsd:element name="ID" type="ds:PreviousDocumentIdentificationIDType" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="GoodsLocation" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--보세구역코드-->
+										<xsd:element name="ID" type="ds:GoodsLocationIdentificationIDType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Control" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--검사희망일(CCYYMMDD)-->
+							<xsd:element name="InspectionStartDateTime" type="ds:ControlInspectionStartDateTimeType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Exporter">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--수출화주(사업자등록번호/통관고유부호/사업장일련번호)-->
+							<xsd:element name="ID" type="ds:ExporterIdentificationIDType" maxOccurs="3"/>
+							<!--수출화주 (상호)-->
+							<xsd:element name="Name" type="ds:ExporterNameTextType"/>
+							<!--사업자등록번호구분부호-->
+							<xsd:element name="RoleCode" type="ds:ExporterRoleCodeType"/>
+							<!--수출자구분-->
+							<xsd:element name="TypeCode" type="kcsds:ExporterTypeCodeType"/>
+							<xsd:element name="Address">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--수출화주도로명코드-->
+										<xsd:element name="CountrySubDivisionID" type="ds:AddressCountrySubDivisionIDType" minOccurs="0"/>
+										<!--  수출화주상세주소-->
+										<xsd:element name="Line" type="ds:AddressLineTextType" minOccurs="0"/>
+										<!--수출화주 우편번호-->
+										<xsd:element name="PostcodeID" type="ds:AddressPostcodeIDType"/>
+										<!--  수출화주건물관리번호-->
+										<xsd:element name="BuildingNumber" type="kcsds:AddressBuildingNumberTextType" minOccurs="0"/>
+										<!--수출화주주소-->
+										<xsd:element name="Description" type="kcsds:AddressDescriptionTextType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="Contact">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--수출화주 (대표자명)-->
+										<xsd:element name="RepresentativeName" type="kcsds:ContactRepresentativeNameTextType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="FinalTransportMeansLoadingPlace" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--적재예정보세구역부호-->
+							<xsd:element name="ID" type="ds:FinalTransportMeansLoadingPlaceIdentificationIDType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="GoodsShipment">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="Buyer">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!-- 구매자 부호-->
+										<xsd:element name="ID" type="ds:BuyerIdentificationIDType" minOccurs="0"/>
+										<!-- 구매자 상호-->
+										<xsd:element name="Name" type="ds:BuyerNameTextType"/>
+										<xsd:element name="Address">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--목적국-->
+													<xsd:element name="CountryCode" type="ds:AddressCountryCodeType"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="AdditionalDocument" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--L/C 번호-->
+										<xsd:element name="ID" type="ds:AdditionalDocumentIdentificationIDType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ApprovedEstablishmentPlace" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!-- 산업단지코드-->
+										<xsd:element name="Name" type="ds:ApprovedEstablishmentPlaceNameTextType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="Consignment">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--컨테이너 적입여부-->
+										<xsd:element name="ContainerIndicator" type="ds:ConsignmentContainerIndicatorType" minOccurs="0"/>
+										<!--물품상태-->
+										<xsd:element name="GoodsStatusCode" type="ds:ConsignmentGoodsStatusCodeType" minOccurs="0"/>
+										<xsd:element name="BorderTransportMeans" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--운송수단-->
+													<xsd:element name="TypeCode" type="ds:BorderTransportMeansTypeCodeType" minOccurs="0"/>
+													<xsd:element name="TransportEquipment" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--운송용기-->
+																<xsd:element name="CharacteristicCode" type="ds:TransportEquipmentCharacteristicCodeType" minOccurs="0"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="GoodsLocation">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--물품소재지 부호 (우편번호)-->
+													<xsd:element name="ID" type="ds:GoodsLocationIdentificationIDType"/>
+													<xsd:element name="Address" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--물품소재지 주소-->
+																<xsd:element name="Description" type="kcsds:AddressDescriptionTextType" minOccurs="0"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="CustomsValuation" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--보험료-->
+										<xsd:element name="ExitToEntryChargeAmount" type="ds:CustomsValuationExitToEntryChargeAmountType" minOccurs="0"/>
+										<!--운임-->
+										<xsd:element name="FreightChargeAmount" type="ds:CustomsValuationFreightChargeAmountType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="DrawBack">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--환급신청인-->
+										<xsd:element name="RoleCode" type="kcsds:DrawBackRoleCodeType" minOccurs="0"/>
+										<!--자동간이정액환급-->
+										<xsd:element name="ApplicationTypeCode" type="kcsds:DrawBackApplicationTypeCodeType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="GovernmentAgencyGoodsItem" maxOccurs="999">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--란번호-->
+										<xsd:element name="SequenceNumeric" type="ds:GovernmentAgencyGoodsItemSequenceNumericType"/>
+										<xsd:element name="AdditionalCode">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--서류첨부여부-->
+													<xsd:element name="AttachmentIndicatorCode" type="kcsds:AdditionalCodeAttachmentIndicatorCodeType"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="AdditionalInformation" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--원산지증명서 발급여부-->
+													<xsd:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType" minOccurs="0"/>
+													<!--자동선적여부-->
+													<xsd:element name="StatementTypeCode" type="ds:AdditionalInformationStatementTypeCodeType" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Commodity">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--거래품명-->
+													<xsd:element name="CargoDescription" type="ds:CommodityCargoDescriptionTextType"/>
+													<!--수량(단위)-->
+													<xsd:element name="CountQuantity" type="ds:CommodityCountQuantityType" minOccurs="0"/>
+													<!--발급협정코드-->
+													<xsd:element name="CriteriaConformanceCode" type="ds:CommodityCriteriaConformanceCodeType" minOccurs="0"/>
+													<!--품명-->
+													<xsd:element name="Description" type="ds:CommodityDescriptionTextType" minOccurs="0"/>
+													<!--상표명-->
+													<xsd:element name="Name" type="ds:CommodityNameTextType" minOccurs="0"/>
+													<!--신고가격 -->
+													<xsd:element name="ValueAmount" type="ds:CommodityValueAmountType"/>
+													<xsd:element name="AdditionalInformation" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--수출승인번호-->
+																<xsd:element name="ID" type="ds:AdditionalInformationIdentificationIDType"/>
+																<!--수출승인구분-->
+																<xsd:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType"/>
+																<!--유효기간시작일자-->
+																<xsd:element name="BeginningDateTime" type="kcsds:AdditionalInformationBeginningDateTimeType"/>
+																<!--유효기간종료일자-->
+																<xsd:element name="EndingDateTime" type="kcsds:AdditionalInformationEndingDateTimeType"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="Classification">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--세번부호-->
+																<xsd:element name="ID" type="ds:ClassificationIdentificationIDType"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="DetailedCommodity" minOccurs="0" maxOccurs="99">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--규격번호-->
+																<xsd:element name="SequenceNumeric" type="ds:DetailedCommoditySequenceNumericType"/>
+																<!--모델 및 규격-->
+																<xsd:element name="CargoDescription" type="ds:DetailedCommodityCargoDescriptionTextType"/>
+																<!--수량(단위)-->
+																<xsd:element name="CountQuantity" type="ds:DetailedCommodityCountQuantityType" minOccurs="0"/>
+																<!--제품번호-->
+																<xsd:element name="LotNumberID" type="ds:DetailedCommodityLotNumberIDType" minOccurs="0"/>
+																<!--단가-->
+																<xsd:element name="UnitPriceAmount" type="kcsds:DetailedCommodityUnitPriceAmountType"/>
+																<!--금액-->
+																<xsd:element name="ValueAmount" type="kcsds:DetailedCommodityValueAmountType"/>
+																<xsd:element name="AdditionalDocument" minOccurs="0" maxOccurs="8">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<!--수출요건승인번호-->
+																			<xsd:element name="ID" type="ds:AdditionalDocumentIdentificationIDType"/>
+																			<!--수출요건확인서 발급일자-->
+																			<xsd:element name="IssueDateTime" type="ds:AdditionalDocumentIssueDateTimeType" minOccurs="0"/>
+																			<!--수출요건확인서류 구분코드-->
+																			<xsd:element name="TypeCode" type="ds:AdditionalDocumentTypeCodeType" minOccurs="0"/>
+																			<!--발급서류명-->
+																			<xsd:element name="Name" type="ds:AdditionalDocumentNameTextType" minOccurs="0"/>
+																			<!--법령적용여부-->
+																			<xsd:element name="CriteriaConformanceIndicatorCode" type="kcsds:AdditionalDocumentCriteriaConformanceIndicatorCodeType"/>
+																			<!--법령일련번호-->
+																			<xsd:element name="CriteriaConformanceID" type="kcsds:AdditionalDocumentCriteriaConformanceIdentificationIDType"/>
+																			<!--요건승인번호 미기재 사유-->
+																			<xsd:element name="NonDescriptionReason" type="kcsds:AdditionalDocumentNonDescriptionReasonTextType" minOccurs="0"/>
+																			<!--법령코드-->
+																			<xsd:element name="CriteriaConformanceCode" type="kcsds:AdditionalDocumentCriteriaConformanceCodeType"/>
+																			<!--품목식별부호-->
+																			<xsd:element name="CommercialCategorizationID" type="kcsds:AdditionalDocumentCommercialCategorizationIDType" minOccurs="0"/>
+																			<!--수출요건비대상사유코드-->
+																			<xsd:element name="NonObjectReasonCode" type="kcsds:AdditionalDocumentNonObjectReasonCodeType" minOccurs="0"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="Constituent" minOccurs="0">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<!--성분-->
+																			<xsd:element name="ElementName" type="ds:ConstituentElementNameTextType" minOccurs="0"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="Vehicle" minOccurs="0" maxOccurs="800">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<!--차대관리번호-->
+																			<xsd:element name="ID" type="ds:VehicleIdentificationIDType" minOccurs="0"/>
+																			<!--차대관리번호 (일련번호)-->
+																			<xsd:element name="SequenceNumeric" type="ds:VehicleSequenceNumericType" minOccurs="0"/>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="Invoice" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--송품장부호-->
+																<xsd:element name="ID" type="ds:InvoiceIdentificationIDType" minOccurs="0"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="PreviousDocument" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--수입신고번호-->
+																<xsd:element name="ID" type="ds:PreviousDocumentIdentificationIDType" minOccurs="0"/>
+																<!--란번호-->
+																<xsd:element name="LineNumeric" type="ds:PreviousDocumentLineNumericType" minOccurs="0"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="GoodsMeasure">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--순중량-->
+													<xsd:element name="NetNetWeightMeasure" type="ds:GoodsMeasureNetNetWeightMeasureType"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Origin">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--원산지-->
+													<xsd:element name="CountryCode" type="ds:OriginCountryCodeType"/>
+													<!--원산지 결정기준-->
+													<xsd:element name="RuleCode" type="ds:OriginRuleCodeType" minOccurs="0"/>
+													<xsd:element name="OriginDescription" minOccurs="0">
+														<xsd:complexType>
+															<xsd:sequence>
+																<!--원산지 표시여부-->
+																<xsd:element name="DisplayIndicatorCode" type="kcsds:OriginDescriptionDisplayIndicatorCodeType" minOccurs="0"/>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Packaging" minOccurs="0">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--포장개수-->
+													<xsd:element name="QuantityQuantity" type="ds:PackagingQuantityQuantityType" minOccurs="0"/>
+													<!--포장종류-->
+													<xsd:element name="TypeCode" type="ds:PackagingTypeCodeType" minOccurs="0"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="TradeTerms">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--인도조건-->
+										<xsd:element name="ConditionCode" type="ds:TradeTermsConditionCodeType"/>
+										<!--결제방법-->
+										<xsd:element name="SettlementConditionCode" type="kcsds:TradeTermsSettlementConditionCodeType" minOccurs="0"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="Warehouse">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--장치장소명-->
+										<xsd:element name="Name" type="ds:WarehouseNameTextType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Manufacturer">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--제조자(통관고유부호/사업장일련번호)-->
+							<xsd:element name="ID" type="ds:ManufacturerIdentificationIDType" minOccurs="0" maxOccurs="2"/>
+							<!--제조자  상호-->
+							<xsd:element name="Name" type="ds:ManufacturerNameTextType"/>
+							<xsd:element name="Address">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--제조자 우편번호-->
+										<xsd:element name="PostcodeID" type="ds:AddressPostcodeIDType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="LoadingLocation">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--적재항-->
+							<xsd:element name="ID" type="ds:LoadingLocationIdentificationIDType" minOccurs="0"/>
+							<!--적재항구분(3:공항, 6:항구)-->
+							<xsd:element name="TypeCode" type="kcsds:LoadingLocationTypeCodeType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Packaging">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--포장종류부호-->
+							<xsd:element name="TypeCode" type="ds:PackagingTypeCodeType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="PreviousDocument" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--화물관리번호-->
+							<xsd:element name="ID" type="ds:PreviousDocumentIdentificationIDType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="SouthNorthTrade" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--반입지역-->
+							<xsd:element name="IdentificationID" type="kcsds:SouthNorthTradeIdentificationIDType" minOccurs="0"/>
+							<!--남북교역여부-->
+							<xsd:element name="TradeIndicatorCode" type="kcsds:SouthNorthTradeTradeIndicatorCodeType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Submitter">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--신고인 부호-->
+							<xsd:element name="ID" type="ds:SubmitterIdentificationIDType"/>
+							<!--신고인 상호-->
+							<xsd:element name="Name" type="ds:SubmitterNameTextType"/>
+							<xsd:element name="Contact">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--신고인대표자명-->
+										<xsd:element name="RepresentativeName" type="kcsds:ContactRepresentativeNameTextType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="UCR" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--화물식별번호(UCR)-->
+							<xsd:element name="ID" type="ds:UCRIdentificationIDType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

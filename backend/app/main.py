@@ -7,8 +7,11 @@ from app.db.session import engine, Base
 from app.api.declarations import router as declarations_router
 from app.api.invoices import router as invoices_router
 from app.api.submissions import router as submissions_router
-import app.models.invoice     # noqa: F401 - 테이블 등록
-import app.models.submission   # noqa: F401 - 테이블 등록
+from app.api.settings import router as settings_router
+from app.api.unipass import router as unipass_router
+import app.models.invoice          # noqa: F401 - 테이블 등록
+import app.models.submission       # noqa: F401 - 테이블 등록
+import app.models.company_settings # noqa: F401 - 테이블 등록
 
 
 @asynccontextmanager
@@ -31,6 +34,8 @@ app.add_middleware(
 app.include_router(declarations_router)
 app.include_router(invoices_router)
 app.include_router(submissions_router)
+app.include_router(settings_router)
+app.include_router(unipass_router)
 
 
 @app.get("/api/health")

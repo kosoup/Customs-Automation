@@ -18,6 +18,7 @@ import {
   TrophyOutlined,
   UploadOutlined,
   PlusOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 
@@ -90,6 +91,9 @@ export default function Dashboard() {
           수출통관 자동화 대시보드
         </Typography.Title>
         <Space>
+          <Button icon={<SettingOutlined />} onClick={() => navigate("/settings")}>
+            회사 설정
+          </Button>
           <Button icon={<UploadOutlined />} onClick={() => navigate("/invoices/upload")}>
             인보이스 업로드
           </Button>

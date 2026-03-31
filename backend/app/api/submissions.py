@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import Response, StreamingResponse
 from sqlalchemy import select
@@ -6,9 +8,11 @@ from sqlalchemy.orm import selectinload
 
 from app.db.session import get_db
 from app.models.declaration import Declaration
+from app.models.company_settings import CompanySettings
 from app.models.submission import Submission
 from app.schemas.submission import SubmissionResponse, TrackResponse
 from app.services.submission import file_export, utradehub, unipass_tracker
+from app.services.xml_generator import generate_govcbr830_xml
 
 router = APIRouter(prefix="/api/declarations", tags=["submissions"])
 
@@ -114,5 +118,23 @@ async def export_file(
     return Response(
         content=content,
         media_type=media_type,
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@router.get("/{decl_id}/export-xml")
+async def export_xml(decl_id: int, db: AsyncSession = Depends(get_db)):
+    """GOVCBR830 XML 다운로드."""
+    decl = await _get_validated_decl(decl_id, db)
+
+    cs_result = await db.execute(select(CompanySettings).where(CompanySettings.id == 1))
+    cs = cs_result.scalar_one_or_none()
+
+    xml_bytes = generate_govcbr830_xml(decl, cs)
+    filename = f"GOVCBR830_{decl_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}.xml"
+
+    return Response(
+        content=xml_bytes,
+        media_type="application/xml; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )

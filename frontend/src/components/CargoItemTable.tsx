@@ -1,6 +1,8 @@
-import { Button, Input, InputNumber, Table } from "antd";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useRef, useState } from "react";
+import { AutoComplete, Button, Input, InputNumber, Table, Tag, Tooltip } from "antd";
+import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import type { DeclarationItem } from "../types";
+import { checkCustomsConfirmation, getTariff, searchHsCode } from "../api/client";
 
 interface Props {
   items: DeclarationItem[];
@@ -8,7 +10,16 @@ interface Props {
   readOnly?: boolean;
 }
 
+interface HsState {
+  tariffRate: string | null;
+  isCustomsTarget: boolean;
+}
+
 export default function CargoItemTable({ items, onChange, readOnly }: Props) {
+  const [hsOptions, setHsOptions] = useState<Record<number, { value: string; label: string }[]>>({});
+  const [hsInfo, setHsInfo] = useState<Record<number, HsState>>({});
+  const debounceTimers = useRef<Record<number, ReturnType<typeof setTimeout>>>({});
+
   const addItem = () => {
     onChange([
       ...items,
@@ -40,6 +51,55 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
     onChange(next);
   };
 
+  const handleHsSearch = (index: number, value: string) => {
+    updateItem(index, "hscode", value);
+    if (debounceTimers.current[index]) {
+      clearTimeout(debounceTimers.current[index]);
+    }
+    if (!value || value.length < 2) {
+      setHsOptions((prev) => ({ ...prev, [index]: [] }));
+      return;
+    }
+    debounceTimers.current[index] = setTimeout(async () => {
+      try {
+        const result = await searchHsCode(value);
+        const options = (result.items || []).map((item) => ({
+          value: item.hscode,
+          label: `${item.hscode}${item.name_ko ? ` - ${item.name_ko}` : ""}`,
+        }));
+        setHsOptions((prev) => ({ ...prev, [index]: options }));
+      } catch {
+        // 검색 실패 무시
+      }
+    }, 300);
+  };
+
+  const handleHsSelect = async (index: number, hscode: string, name_ko?: string) => {
+    updateItem(index, "hscode", hscode);
+    if (name_ko && !items[index].product_name_ko) {
+      updateItem(index, "product_name_ko", name_ko);
+    }
+    setHsOptions((prev) => ({ ...prev, [index]: [] }));
+
+    // 관세율 + 세관장확인 병렬 조회
+    const [tariffRes, checkRes] = await Promise.allSettled([
+      getTariff(hscode),
+      checkCustomsConfirmation(hscode),
+    ]);
+
+    setHsInfo((prev) => ({
+      ...prev,
+      [index]: {
+        tariffRate:
+          tariffRes.status === "fulfilled" && tariffRes.value.tariff_rate
+            ? tariffRes.value.tariff_rate
+            : null,
+        isCustomsTarget:
+          checkRes.status === "fulfilled" ? checkRes.value.is_target : false,
+      },
+    }));
+  };
+
   const columns = [
     { title: "란", dataIndex: "item_seq", width: 50 },
     {
@@ -67,16 +127,45 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
     {
       title: "HS코드",
       dataIndex: "hscode",
-      width: 130,
-      render: (_: unknown, __: unknown, i: number) => (
-        <Input
-          value={items[i].hscode}
-          onChange={(e) => updateItem(i, "hscode", e.target.value)}
-          maxLength={10}
-          placeholder="10자리"
-          disabled={readOnly}
-        />
-      ),
+      width: 180,
+      render: (_: unknown, __: unknown, i: number) => {
+        const info = hsInfo[i];
+        return (
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              {readOnly ? (
+                <Input value={items[i].hscode} disabled style={{ flex: 1 }} />
+              ) : (
+                <AutoComplete
+                  value={items[i].hscode}
+                  options={hsOptions[i] || []}
+                  onSearch={(v) => handleHsSearch(i, v)}
+                  onSelect={(v, opt) => {
+                    const name_ko = opt.label.includes(" - ")
+                      ? opt.label.split(" - ").slice(1).join(" - ")
+                      : undefined;
+                    handleHsSelect(i, v, name_ko);
+                  }}
+                  onChange={(v) => updateItem(i, "hscode", v)}
+                  style={{ flex: 1 }}
+                >
+                  <Input maxLength={10} placeholder="10자리 또는 품목명" />
+                </AutoComplete>
+              )}
+              {info?.isCustomsTarget && (
+                <Tooltip title="세관장확인대상 품목입니다">
+                  <ExclamationCircleOutlined style={{ color: "#ff4d4f" }} />
+                </Tooltip>
+              )}
+            </div>
+            {info?.tariffRate && (
+              <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>
+                관세율: <Tag color="blue" style={{ fontSize: 10, padding: "0 4px" }}>{info.tariffRate}%</Tag>
+              </div>
+            )}
+          </div>
+        );
+      },
     },
     {
       title: "규격",
@@ -169,7 +258,7 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
         rowKey="item_seq"
         pagination={false}
         size="small"
-        scroll={{ x: 900 }}
+        scroll={{ x: 1000 }}
       />
       {!readOnly && (
         <Button

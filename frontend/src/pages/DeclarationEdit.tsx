@@ -33,6 +33,7 @@ import {
   submitDeclaration,
   trackDeclaration,
   exportFileUrl,
+  exportXmlUrl,
 } from "../api/client";
 import CargoItemTable from "../components/CargoItemTable";
 import type { DeclarationItem, ValidationError } from "../types";
@@ -389,6 +390,15 @@ export default function DeclarationEdit() {
               target="_blank"
             >
               Excel 다운로드
+            </Button>
+          )}
+          {!isNew && (
+            <Button
+              icon={<DownloadOutlined />}
+              href={exportXmlUrl(Number(id))}
+              target="_blank"
+            >
+              XML 다운로드 (GOVCBR830)
             </Button>
           )}
           {!isNew && status === "submitted" && (

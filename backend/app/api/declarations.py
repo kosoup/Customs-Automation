@@ -7,6 +7,7 @@ from sqlalchemy.orm import selectinload
 
 from app.db.session import get_db
 from app.models.declaration import Declaration, DeclarationItem
+from app.models.company_settings import CompanySettings
 from app.schemas.declaration import (
     DeclarationCreate,
     DeclarationUpdate,
@@ -22,6 +23,23 @@ router = APIRouter(prefix="/api/declarations", tags=["declarations"])
 @router.post("", response_model=DeclarationResponse, status_code=201)
 async def create_declaration(body: DeclarationCreate, db: AsyncSession = Depends(get_db)):
     decl = Declaration(**body.model_dump(exclude={"items"}))
+
+    # 회사 설정에서 신고인/수출자 정보 자동 채움
+    if not decl.declarant_code and not decl.exporter_business_number:
+        cs_result = await db.execute(select(CompanySettings).where(CompanySettings.id == 1))
+        cs = cs_result.scalar_one_or_none()
+        if cs:
+            if not decl.declarant_code:
+                decl.declarant_code = cs.declarant_code
+            if not decl.declarant_name:
+                decl.declarant_name = cs.declarant_name
+            if not decl.exporter_business_number:
+                decl.exporter_business_number = cs.exporter_business_number
+            if not decl.exporter_address:
+                decl.exporter_address = cs.exporter_address
+            if not decl.loading_port:
+                decl.loading_port = cs.loading_port
+
     for item_data in body.items:
         decl.items.append(DeclarationItem(**item_data.model_dump()))
     db.add(decl)

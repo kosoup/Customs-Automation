@@ -72,6 +72,75 @@ export function exportFileUrl(id: number, fmt: "xlsx" | "csv" = "xlsx") {
   return `http://localhost:8000/api/declarations/${id}/export-file?fmt=${fmt}`;
 }
 
+// ── 회사 설정 ──────────────────────────────────────────────
+
+export interface CompanySettings {
+  id?: number;
+  declarant_code?: string;
+  declarant_name?: string;
+  representative_name?: string;
+  exporter_business_number?: string;
+  exporter_customs_id?: string;
+  exporter_address?: string;
+  exporter_postcode?: string;
+  loading_port?: string;
+  customs_office?: string;
+  updated_at?: string;
+}
+
+export async function getSettings(): Promise<CompanySettings> {
+  const { data } = await api.get("/settings");
+  return data;
+}
+
+export async function updateSettings(body: Partial<CompanySettings>): Promise<CompanySettings> {
+  const { data } = await api.put("/settings", body);
+  return data;
+}
+
+// ── UNI-PASS 조회 ──────────────────────────────────────────
+
+export interface HsSearchItem {
+  hscode: string;
+  name_ko: string;
+  name_en?: string;
+}
+
+export interface TariffResult {
+  hscode: string;
+  tariff_rate?: string;
+  unit?: string;
+  duty_type?: string;
+  error?: string;
+}
+
+export interface CustomsCheckResult {
+  is_target: boolean;
+  requirements?: Array<{ law_name: string; confirmation_org: string }>;
+  error?: string;
+}
+
+export async function searchHsCode(q: string): Promise<{ items: HsSearchItem[] }> {
+  const { data } = await api.get("/unipass/hs-search", { params: { q } });
+  return data;
+}
+
+export async function getTariff(hscode: string): Promise<TariffResult> {
+  const { data } = await api.get(`/unipass/tariff/${hscode}`);
+  return data;
+}
+
+export async function checkCustomsConfirmation(hscode: string): Promise<CustomsCheckResult> {
+  const { data } = await api.get(`/unipass/customs-check/${hscode}`);
+  return data;
+}
+
+// ── XML 내보내기 ────────────────────────────────────────────
+
+export function exportXmlUrl(id: number) {
+  return `http://localhost:8000/api/declarations/${id}/export-xml`;
+}
+
 export async function uploadInvoice(
   file: File,
   templateName?: string
