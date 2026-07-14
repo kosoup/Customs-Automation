@@ -3,7 +3,6 @@ GOVCBR830 수출신고서 XML 생성기.
 관세청 표준 XML 스키마: KCS_DeclarationOfEXP_830SchemaModule_1.0_standard
 """
 from datetime import datetime
-from decimal import Decimal
 from typing import Optional
 
 from lxml import etree
@@ -46,8 +45,6 @@ def _date(val) -> str:
 def _amount(val) -> str:
     if val is None:
         return "0"
-    if isinstance(val, Decimal):
-        return str(int(val))
     return str(val)
 
 

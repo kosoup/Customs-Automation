@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class CompanySettingsUpdate(BaseModel):
@@ -17,6 +17,8 @@ class CompanySettingsUpdate(BaseModel):
 
 
 class CompanySettingsResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     declarant_code: Optional[str] = None
     declarant_name: Optional[str] = None
@@ -28,6 +30,3 @@ class CompanySettingsResponse(BaseModel):
     loading_port: Optional[str] = None
     customs_office: Optional[str] = None
     updated_at: Optional[datetime] = None
-
-    class Config:
-        from_attributes = True

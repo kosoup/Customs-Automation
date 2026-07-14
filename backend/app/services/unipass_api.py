@@ -24,6 +24,9 @@ async def search_hs(keyword: str, page: int = 1, size: int = 10) -> dict:
     엔드포인트: hsSrchQry/retrieveHsSrch
     keyword가 숫자면 HS코드 부분 검색, 아니면 품목명 검색.
     """
+    if not settings.UNIPASS_KEY_HS_SEARCH:
+        return {"items": [], "error": "UNI-PASS HS 검색 API 키가 설정되지 않았습니다"}
+
     params: dict = {"crkyCd": settings.UNIPASS_KEY_HS_SEARCH}
     if keyword.strip().isdigit():
         params["hsSgn"] = keyword.strip()
@@ -33,7 +36,7 @@ async def search_hs(keyword: str, page: int = 1, size: int = 10) -> dict:
     url = f"{UNIPASS_BASE}/hsSrchQry/retrieveHsSrch"
 
     try:
-        async with httpx.AsyncClient(timeout=10, verify=False) as client:
+        async with httpx.AsyncClient(timeout=10) as client:
             resp = await client.get(url, params=params)
             resp.raise_for_status()
     except httpx.HTTPError as e:
@@ -60,11 +63,14 @@ async def get_tariff(hscode: str) -> dict:
     관세율기본조회 API.
     엔드포인트: tariffRtInfoQry/retrieveTariffRtInfo
     """
+    if not settings.UNIPASS_KEY_TARIFF:
+        return {"hscode": hscode, "error": "UNI-PASS 관세율 API 키가 설정되지 않았습니다"}
+
     url = f"{UNIPASS_BASE}/tariffRtInfoQry/retrieveTariffRtInfo"
     params = {"crkyCd": settings.UNIPASS_KEY_TARIFF, "hsSgn": hscode.strip()}
 
     try:
-        async with httpx.AsyncClient(timeout=10, verify=False) as client:
+        async with httpx.AsyncClient(timeout=10) as client:
             resp = await client.get(url, params=params)
             resp.raise_for_status()
     except httpx.HTTPError as e:
@@ -92,11 +98,14 @@ async def check_customs_confirmation(hscode: str) -> dict:
     세관장확인대상물품조회 API.
     엔드포인트: cstmHsConfQry/retrieveCstmHsConf
     """
+    if not settings.UNIPASS_KEY_CUSTOMS_CHECK:
+        return {"is_target": False, "error": "UNI-PASS 세관장확인 API 키가 설정되지 않았습니다"}
+
     url = f"{UNIPASS_BASE}/cstmHsConfQry/retrieveCstmHsConf"
     params = {"crkyCd": settings.UNIPASS_KEY_CUSTOMS_CHECK, "hsSgn": hscode.strip()}
 
     try:
-        async with httpx.AsyncClient(timeout=10, verify=False) as client:
+        async with httpx.AsyncClient(timeout=10) as client:
             resp = await client.get(url, params=params)
             resp.raise_for_status()
     except httpx.HTTPError as e:

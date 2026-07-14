@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table, Button, Tag, Popconfirm, message, Tabs } from "antd";
 import { PlusOutlined, DeleteOutlined, UploadOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 
-import { listDeclarations, deleteDeclaration } from "../api/client";
+import {
+  listDeclarations,
+  deleteDeclaration,
+  getApiErrorMessage,
+} from "../api/client";
 import type { DeclarationListItem } from "../types";
 
 const STATUS_COLORS: Record<string, string> = {
@@ -29,7 +33,7 @@ export default function DeclarationList() {
   const [loading, setLoading] = useState(false);
   const [statusFilter, setStatusFilter] = useState<string | undefined>();
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const result = await listDeclarations(statusFilter);
@@ -37,19 +41,19 @@ export default function DeclarationList() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter]);
 
   useEffect(() => {
     fetchData();
-  }, [statusFilter]);
+  }, [fetchData]);
 
   const handleDelete = async (id: number) => {
     try {
       await deleteDeclaration(id);
       message.success("삭제되었습니다");
       fetchData();
-    } catch (e: any) {
-      message.error(e.response?.data?.detail || "삭제 실패");
+    } catch (error: unknown) {
+      message.error(getApiErrorMessage(error, "삭제 실패"));
     }
   };
 

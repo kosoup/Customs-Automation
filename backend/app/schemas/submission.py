@@ -1,9 +1,11 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class SubmissionResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     declaration_id: int
     submitted_at: datetime
@@ -11,10 +13,6 @@ class SubmissionResponse(BaseModel):
     status: str
     tracking_number: Optional[str] = None
     error_message: Optional[str] = None
-
-    class Config:
-        from_attributes = True
-
 
 class TrackResponse(BaseModel):
     code: Optional[str] = None

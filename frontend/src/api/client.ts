@@ -7,6 +7,14 @@ import type {
 
 const api = axios.create({ baseURL: "http://localhost:8000/api" });
 
+export function getApiErrorMessage(error: unknown, fallback: string): string {
+  if (axios.isAxiosError(error)) {
+    const detail = error.response?.data?.detail;
+    if (typeof detail === "string") return detail;
+  }
+  return fallback;
+}
+
 export async function listDeclarations(
   status?: string,
   page = 1
@@ -144,7 +152,7 @@ export function exportXmlUrl(id: number) {
 export async function uploadInvoice(
   file: File,
   templateName?: string
-): Promise<{ invoice: object; declaration_id: number; parsed_data: object }> {
+): Promise<InvoiceUploadResult> {
   const form = new FormData();
   form.append("file", file);
   if (templateName) form.append("template_name", templateName);
@@ -152,4 +160,20 @@ export async function uploadInvoice(
     headers: { "Content-Type": "multipart/form-data" },
   });
   return data;
+}
+
+export interface ParsedInvoicePreview {
+  exporter_name?: string;
+  buyer_name?: string;
+  invoice_number?: string;
+  invoice_date?: string;
+  incoterms?: string;
+  currency_code?: string;
+  total_amount?: number;
+}
+
+export interface InvoiceUploadResult {
+  invoice: object;
+  declaration_id: number;
+  parsed_data: ParsedInvoicePreview;
 }

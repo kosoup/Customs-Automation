@@ -37,6 +37,8 @@ async def submit_declaration(
 
     if decl.status not in ("validated",):
         raise HTTPException(400, "검증(validated) 상태의 신고서만 제출할 수 있습니다")
+    if method not in ("utradehub", "file_export"):
+        raise HTTPException(400, f"지원하지 않는 제출 방식: {method}")
 
     sub = Submission(declaration_id=decl_id, method=method, status="pending")
     db.add(sub)
@@ -52,9 +54,6 @@ async def submit_declaration(
             # 여기서는 이력만 기록
             sub.status = "success"
             sub.tracking_number = None
-        else:
-            raise HTTPException(400, f"지원하지 않는 제출 방식: {method}")
-
         decl.status = "submitted"
         if sub.tracking_number:
             decl.submission_ref = sub.tracking_number
@@ -106,6 +105,8 @@ async def export_file(
 ):
     decl = await _get_validated_decl(decl_id, db)
 
+    if fmt not in ("xlsx", "csv"):
+        raise HTTPException(400, f"지원하지 않는 내보내기 형식: {fmt}")
     if fmt == "csv":
         content = file_export.generate_csv(decl)
         filename = f"declaration_{decl_id}.csv"

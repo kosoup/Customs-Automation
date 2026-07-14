@@ -1,18 +1,5 @@
-# Customs Automation (관세 신고 자동화)
+# Customs Automation
 
-## Project Structure
-- `backend/` - FastAPI + SQLAlchemy + SQLite
-- `frontend/` - React 19 + Vite + Ant Design 6 + TypeScript
+프로젝트 규칙은 AGENTS.md를 단일 진실 소스로 사용한다 (Codex와 공유).
 
-## Run
-- Backend: `cd backend && source venv/bin/activate && uvicorn app.main:app --reload`
-- Frontend: `cd frontend && npm run dev`
-
-## Key Libraries
-- PDF parsing: pdfplumber
-- Excel parsing: openpyxl
-- API client: axios + react-query
-
-## Conventions
-- 답변은 한국어로
-- Git remote: github.com/kosoup/Customs-Automation (private)
+@AGENTS.md
