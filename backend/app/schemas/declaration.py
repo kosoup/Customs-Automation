@@ -2,7 +2,7 @@ from datetime import date, datetime
 from decimal import Decimal
 from typing import Optional, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DeclarationItemBase(BaseModel):
@@ -22,11 +22,10 @@ class DeclarationItemCreate(DeclarationItemBase):
 
 
 class DeclarationItemResponse(DeclarationItemBase):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     declaration_id: int
-
-    class Config:
-        from_attributes = True
 
 
 class DeclarationBase(BaseModel):
@@ -56,7 +55,7 @@ class DeclarationBase(BaseModel):
 
 
 class DeclarationCreate(DeclarationBase):
-    items: List[DeclarationItemCreate] = []
+    items: List[DeclarationItemCreate] = Field(default_factory=list)
 
 
 class DeclarationUpdate(DeclarationBase):
@@ -64,19 +63,20 @@ class DeclarationUpdate(DeclarationBase):
 
 
 class DeclarationResponse(DeclarationBase):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     status: str
     created_at: datetime
     updated_at: datetime
     submission_ref: Optional[str] = None
     unipass_ref: Optional[str] = None
-    items: List[DeclarationItemResponse] = []
-
-    class Config:
-        from_attributes = True
+    items: List[DeclarationItemResponse] = Field(default_factory=list)
 
 
 class DeclarationListResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     status: str
     exporter_name: Optional[str] = None
@@ -86,10 +86,6 @@ class DeclarationListResponse(BaseModel):
     currency_code: Optional[str] = None
     created_at: datetime
 
-    class Config:
-        from_attributes = True
-
-
 class ValidationError(BaseModel):
     field: str
     message: str
@@ -97,4 +93,4 @@ class ValidationError(BaseModel):
 
 class ValidationResult(BaseModel):
     valid: bool
-    errors: List[ValidationError] = []
+    errors: List[ValidationError] = Field(default_factory=list)

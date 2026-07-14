@@ -30,14 +30,16 @@
 
 ---
 
-## UNI-PASS API 인증키
+## UNI-PASS API 인증 설정
 
-| API | 인증키 |
-|-----|--------|
-| HS CODE 내비게이션 | `q260c205y132u009k080o020d0` |
-| HS 부호검색 | `m250o275s132p039a030c090t0` |
-| 세관장확인대상물품조회 | `i280x285t122x079u070y060l0` |
-| 관세율기본조회 | `z290u255b132v214x040m000q0` |
+실제 키는 커밋하지 않고 `backend/.env`에만 설정한다.
+
+| API | 환경변수 |
+|-----|----------|
+| HS CODE 내비게이션 | `UNIPASS_KEY_HS_NAVI` |
+| HS 부호검색 | `UNIPASS_KEY_HS_SEARCH` |
+| 세관장확인대상물품조회 | `UNIPASS_KEY_CUSTOMS_CHECK` |
+| 관세율기본조회 | `UNIPASS_KEY_TARIFF` |
 
 Base URL: `https://unipass.customs.go.kr:38010/ext/rest/`
 
@@ -68,7 +70,7 @@ Base URL: `https://unipass.customs.go.kr:38010/ext/rest/`
 ### Step 4: GOVCBR830 XML 생성
 - `backend/app/services/xml_generator.py` (신규)
   - Declaration + DeclarationItem → GOVCBR830 XML
-  - lxml로 XSD 유효성 검사
+  - 공식 XSD 확보 후 lxml 유효성 검사를 추가
 - `backend/app/api/submissions.py` (수정: `?fmt=xml` 엔드포인트)
 - `frontend/src/pages/DeclarationEdit.tsx` (수정: XML 다운로드 버튼)
 
@@ -97,4 +99,5 @@ Base URL: `https://unipass.customs.go.kr:38010/ext/rest/`
 1. 회사 설정 저장 → 새 신고서 생성 시 신고인 정보 자동 채움 확인
 2. 신고서 품목 HS코드 검색창 → 품목명 입력 → 드롭다운 결과 확인
 3. HS코드 선택 → 관세율 자동 표시 확인
-4. 신고서 완성 → XML 다운로드 → XSD 유효성 통과 확인
+4. 신고서 완성 → XML 다운로드 → 구조 회귀 테스트 확인
+5. 실제 전송 전 연계 사업자가 제공한 최신 공식 XSD로 유효성 확인

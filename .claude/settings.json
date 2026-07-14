@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./scripts/check)",
+      "Bash(./scripts/bootstrap)",
+      "Bash(cd backend && .venv/bin/pytest:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run build:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git status)"
+    ],
+    "deny": [
+      "Read(./backend/.env)",
+      "Edit(./backend/customs.db)",
+      "Edit(./backend/uploads/**)",
+      "Edit(./backend/.env)"
+    ]
+  }
+}

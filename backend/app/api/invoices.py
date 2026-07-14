@@ -1,6 +1,5 @@
 import json
-import os
-import shutil
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
@@ -19,11 +18,15 @@ from app.services.parser.pdf_parser import PdfParser
 
 router = APIRouter(prefix="/api/invoices", tags=["invoices"])
 
-ALLOWED_EXTENSIONS = {".pdf", ".xlsx", ".xls"}
+ALLOWED_EXTENSIONS = {".pdf", ".xlsx"}
 TEMPLATE_DIR = Path(__file__).parent.parent / "services" / "parser" / "templates"
+UPLOAD_CHUNK_BYTES = 1024 * 1024
+TEMPLATE_NAME_PATTERN = re.compile(r"^[A-Za-z0-9_-]+$")
 
 
 def _load_template(name: Optional[str]) -> Optional[dict]:
+    if name and not TEMPLATE_NAME_PATTERN.fullmatch(name):
+        raise HTTPException(400, "템플릿 이름 형식이 올바르지 않습니다")
     if not name:
         path = TEMPLATE_DIR / "default.json"
     else:
@@ -33,58 +36,85 @@ def _load_template(name: Optional[str]) -> Optional[dict]:
     return None
 
 
+async def _save_upload(file: UploadFile, save_path: Path) -> None:
+    written = 0
+    try:
+        with save_path.open("wb") as destination:
+            while chunk := await file.read(UPLOAD_CHUNK_BYTES):
+                written += len(chunk)
+                if written > settings.MAX_UPLOAD_BYTES:
+                    raise HTTPException(
+                        413,
+                        f"파일 크기는 {settings.MAX_UPLOAD_BYTES}바이트를 초과할 수 없습니다",
+                    )
+                destination.write(chunk)
+    except Exception:
+        save_path.unlink(missing_ok=True)
+        raise
+
+
 @router.post("/upload", response_model=UploadResponse, status_code=201)
 async def upload_invoice(
     file: UploadFile = File(...),
     template_name: Optional[str] = Form(None),
     db: AsyncSession = Depends(get_db),
 ):
+    safe_filename = Path((file.filename or "").replace("\\", "/")).name.strip()
+    if not safe_filename:
+        raise HTTPException(400, "파일명이 필요합니다")
+
     # 확장자 검증
-    ext = Path(file.filename).suffix.lower()
+    ext = Path(safe_filename).suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(400, f"지원하지 않는 파일 형식입니다: {ext}")
+
+    template = _load_template(template_name)
 
     # 저장 경로
     upload_dir = Path(settings.UPLOAD_DIR)
     upload_dir.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S%f")
-    save_path = upload_dir / f"{timestamp}_{file.filename}"
+    save_path = upload_dir / f"{timestamp}_{safe_filename}"
 
-    with open(save_path, "wb") as f:
-        shutil.copyfileobj(file.file, f)
+    await _save_upload(file, save_path)
 
     # 파싱
-    template = _load_template(template_name)
     try:
         if ext == ".pdf":
             parsed = PdfParser().parse(str(save_path), template)
         else:
             parsed = ExcelParser().parse(str(save_path), template)
     except Exception as e:
+        save_path.unlink(missing_ok=True)
         raise HTTPException(422, f"파일 파싱 실패: {e}")
 
-    # 매핑 → 신고서 초안 생성
-    decl_data = map_to_declaration(parsed)
-    items_data = decl_data.pop("items", [])
+    try:
+        # 매핑 → 신고서 초안 생성
+        decl_data = map_to_declaration(parsed)
+        items_data = decl_data.pop("items", [])
 
-    decl = Declaration(**decl_data)
-    for item_data in items_data:
-        decl.items.append(DeclarationItem(**item_data))
-    db.add(decl)
-    await db.flush()  # id 획득
+        decl = Declaration(**decl_data)
+        for item_data in items_data:
+            decl.items.append(DeclarationItem(**item_data))
+        db.add(decl)
+        await db.flush()  # id 획득
 
-    # Invoice 레코드 저장
-    invoice = Invoice(
-        filename=file.filename,
-        file_type="pdf" if ext == ".pdf" else "xlsx",
-        file_path=str(save_path),
-        parsed_at=datetime.now(timezone.utc),
-        parser_template=template_name or "default",
-        declaration_id=decl.id,
-    )
-    db.add(invoice)
-    await db.commit()
-    await db.refresh(invoice)
+        # Invoice 레코드 저장
+        invoice = Invoice(
+            filename=safe_filename,
+            file_type="pdf" if ext == ".pdf" else "xlsx",
+            file_path=str(save_path),
+            parsed_at=datetime.now(timezone.utc),
+            parser_template=template_name or "default",
+            declaration_id=decl.id,
+        )
+        db.add(invoice)
+        await db.commit()
+        await db.refresh(invoice)
+    except Exception:
+        await db.rollback()
+        save_path.unlink(missing_ok=True)
+        raise
 
     return UploadResponse(
         invoice=invoice,

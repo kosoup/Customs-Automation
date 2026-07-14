@@ -34,6 +34,7 @@ import {
   trackDeclaration,
   exportFileUrl,
   exportXmlUrl,
+  getApiErrorMessage,
 } from "../api/client";
 import CargoItemTable from "../components/CargoItemTable";
 import type { DeclarationItem, ValidationError } from "../types";
@@ -104,8 +105,8 @@ export default function DeclarationEdit() {
         setStatus("draft");
         setErrors([]);
       }
-    } catch (e: any) {
-      message.error(e.response?.data?.detail || "저장 실패");
+    } catch (error: unknown) {
+      message.error(getApiErrorMessage(error, "저장 실패"));
     } finally {
       setLoading(false);
     }
@@ -123,7 +124,7 @@ export default function DeclarationEdit() {
       } else {
         message.warning(`${result.errors.length}건의 오류가 있습니다`);
       }
-    } catch (e: any) {
+    } catch {
       message.error("검증 실패");
     } finally {
       setLoading(false);
@@ -137,8 +138,8 @@ export default function DeclarationEdit() {
       await submitDeclaration(Number(id), "file_export");
       setStatus("submitted");
       message.success("제출(file_export) 완료. 파일을 다운로드하여 UNI-PASS에 업로드하세요.");
-    } catch (e: any) {
-      message.error(e.response?.data?.detail || "제출 실패");
+    } catch (error: unknown) {
+      message.error(getApiErrorMessage(error, "제출 실패"));
     } finally {
       setLoading(false);
     }
@@ -148,7 +149,7 @@ export default function DeclarationEdit() {
     if (isNew) return;
     setLoading(true);
     try {
-      const result = await trackDeclaration(Number(id)) as any;
+      const result = await trackDeclaration(Number(id));
       if (result.code === "NOT_CONFIGURED") {
         message.warning(result.message);
       } else {

@@ -18,7 +18,11 @@ import {
 } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 
-import { uploadInvoice } from "../api/client";
+import {
+  getApiErrorMessage,
+  uploadInvoice,
+} from "../api/client";
+import type { InvoiceUploadResult } from "../api/client";
 
 const { Dragger } = Upload;
 
@@ -32,11 +36,11 @@ export default function InvoiceUpload() {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [template, setTemplate] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<InvoiceUploadResult | null>(null);
   const [error, setError] = useState<string>("");
 
   const uploadProps: UploadProps = {
-    accept: ".pdf,.xlsx,.xls",
+    accept: ".pdf,.xlsx",
     fileList,
     beforeUpload: (file) => {
       setFileList([file as unknown as UploadFile]);
@@ -63,8 +67,8 @@ export default function InvoiceUpload() {
       const res = await uploadInvoice(file, template || undefined);
       setResult(res);
       message.success("파싱 완료! 신고서 초안이 생성되었습니다.");
-    } catch (e: any) {
-      const msg = e.response?.data?.detail || "업로드/파싱 실패";
+    } catch (error: unknown) {
+      const msg = getApiErrorMessage(error, "업로드/파싱 실패");
       setError(msg);
       message.error(msg);
     } finally {
