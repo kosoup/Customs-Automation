@@ -29,3 +29,17 @@
 - 테스트에서 운영 Uni-Pass 엔드포인트를 호출하지 않는다.
 - `backend/customs.db`와 `backend/uploads/`는 사용자 데이터로 취급한다.
 - DB 스키마를 변경하면 Alembic 마이그레이션 필요 여부를 확인한다.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live as GitHub Issues (kosoup/Customs-Automation), managed via `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default five canonical labels (needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context layout — `CONTEXT.md` + `docs/adr/` at repo root (not yet created; skills proceed silently until they exist). See `docs/agents/domain.md`.
