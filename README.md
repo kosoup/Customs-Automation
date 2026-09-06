@@ -1,6 +1,8 @@
 # Customs Automation
 
-PDF 또는 Excel 인보이스를 파싱해 수출신고서 초안을 만들고, 검증·XML/파일 내보내기·제출 이력을 관리하는 FastAPI/React 애플리케이션입니다.
+수출통관 실무에서 이미지 선적서류를 확인하고 반복 입력하던 업무에 착안한 개인 프로젝트입니다. PDF를 읽어 공통사항·품목 초안을 자동 작성하고, 원문 근거와 누락값을 대조·수정하도록 구현했습니다. FastAPI·React 기반이며 AI 코딩 도구의 도움으로 개발했습니다.
+
+**핵심 흐름:** 이미지 PDF → 로컬 OCR → 공통·품목 초안 → 근거 확인·수정 → JSON·12열 TSV. 실제 ecom 입력과 관세청 송신은 포함하지 않습니다.
 
 ## 이미지 PDF 자동 작성 시제품
 
@@ -8,9 +10,9 @@ PDF 또는 Excel 인보이스를 파싱해 수출신고서 초안을 만들고, 
 
 ## 문서 검증과 면접 준비
 
-[검증 결과·실패 원인](docs/demo-cases/README.md) · [직접 시간 측정](docs/portfolio-measurement.md) · [3분 대본](docs/portfolio-demo-script.md) · [GitHub PR 준비 상태](docs/portfolio-pr-draft.md)
+[검증 결과·실패 원인](docs/demo-cases/README.md) · [3분 대본](docs/portfolio-demo-script.md) · [GitHub PR 준비 상태](docs/portfolio-pr-draft.md)
 
-합성 이미지 PDF 4건의 정답 대조와 매핑 실패의 수정 전후를 기록했습니다. 수작업 대비 시간 절감은 아직 측정하지 않았습니다. 최신 검증·게시 상태는 PR 준비 문서에서 확인합니다.
+합성 이미지 PDF 4건의 정답 대조와 매핑 실패의 수정 전후를 기록했습니다. 포트폴리오는 실무 문제 발견 → 자동 초안 작성 → 오류 확인·개선의 과정을 보여줍니다. 시간 비교는 완료 조건에 포함하지 않습니다. 최신 검증·게시 상태는 PR 준비 문서에서 확인합니다.
 
 ## 포트폴리오 안내
 
