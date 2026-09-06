@@ -4,6 +4,7 @@ from typing import Optional
 
 import openpyxl
 
+from ..constants import INCOTERMS_VALID
 from .base import BaseParser, ParsedInvoice, ParsedItem
 
 
@@ -28,10 +29,6 @@ def _match_keywords(cell_val, keywords: list) -> bool:
 def _extract_date(text: str) -> Optional[str]:
     """다양한 날짜 형식을 YYYY-MM-DD로 변환."""
     text = str(text).strip()
-    patterns = [
-        (r"(\d{4})[./-](\d{1,2})[./-](\d{1,2})", "{}-{:02d}-{:02d}"),
-        (r"(\d{1,2})[./-](\d{1,2})[./-](\d{4})", None),
-    ]
     m = re.search(r"(\d{4})[./-](\d{1,2})[./-](\d{1,2})", text)
     if m:
         return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
@@ -42,8 +39,7 @@ def _extract_date(text: str) -> Optional[str]:
 
 
 def _extract_incoterms(text: str) -> Optional[str]:
-    valid = {"EXW", "FCA", "FAS", "FOB", "CFR", "CIF", "CPT", "CIP", "DAP", "DPU", "DDP"}
-    for term in valid:
+    for term in INCOTERMS_VALID:
         if term in text.upper():
             return term
     return None
@@ -162,7 +158,6 @@ class ExcelParser(BaseParser):
             seq = 1
             for row in rows[header_row_idx + 1:]:
                 qty_col = col_map.get("quantity")
-                price_col = col_map.get("unit_price")
                 amt_col = col_map.get("amount")
 
                 # 수량이나 금액이 없는 행은 품목 행이 아님

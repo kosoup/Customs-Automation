@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Sequence
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import select, func
@@ -21,12 +21,12 @@ router = APIRouter(prefix="/api/declarations", tags=["declarations"])
 
 
 @router.post("", response_model=DeclarationResponse, status_code=201)
-async def create_declaration(body: DeclarationCreate, db: AsyncSession = Depends(get_db)):
+async def create_declaration(body: DeclarationCreate, db: AsyncSession = Depends(get_db)) -> Declaration:
     decl = Declaration(**body.model_dump(exclude={"items"}))
 
     # 회사 설정에서 신고인/수출자 정보 자동 채움
     if not decl.declarant_code and not decl.exporter_business_number:
-        cs_result = await db.execute(select(CompanySettings).where(CompanySettings.id == 1))
+        cs_result = await db.execute(select(CompanySettings).where(CompanySettings.id == CompanySettings.SINGLETON_ID))
         cs = cs_result.scalar_one_or_none()
         if cs:
             if not decl.declarant_code:
@@ -54,7 +54,7 @@ async def list_declarations(
     page: int = Query(1, ge=1),
     size: int = Query(20, ge=1, le=100),
     db: AsyncSession = Depends(get_db),
-):
+) -> Sequence[Declaration]:
     query = select(Declaration).order_by(Declaration.created_at.desc())
     if status:
         query = query.where(Declaration.status == status)
@@ -64,7 +64,7 @@ async def list_declarations(
 
 
 @router.get("/{decl_id}", response_model=DeclarationResponse)
-async def get_declaration(decl_id: int, db: AsyncSession = Depends(get_db)):
+async def get_declaration(decl_id: int, db: AsyncSession = Depends(get_db)) -> Declaration:
     result = await db.execute(
         select(Declaration).options(selectinload(Declaration.items)).where(Declaration.id == decl_id)
     )
@@ -75,7 +75,7 @@ async def get_declaration(decl_id: int, db: AsyncSession = Depends(get_db)):
 
 
 @router.put("/{decl_id}", response_model=DeclarationResponse)
-async def update_declaration(decl_id: int, body: DeclarationUpdate, db: AsyncSession = Depends(get_db)):
+async def update_declaration(decl_id: int, body: DeclarationUpdate, db: AsyncSession = Depends(get_db)) -> Declaration:
     result = await db.execute(
         select(Declaration).options(selectinload(Declaration.items)).where(Declaration.id == decl_id)
     )
@@ -97,12 +97,12 @@ async def update_declaration(decl_id: int, body: DeclarationUpdate, db: AsyncSes
 
     decl.status = "draft"
     await db.commit()
-    await db.refresh(decl, ["items"])
+    await db.refresh(decl, ["items", "updated_at"])
     return decl
 
 
 @router.delete("/{decl_id}", status_code=204)
-async def delete_declaration(decl_id: int, db: AsyncSession = Depends(get_db)):
+async def delete_declaration(decl_id: int, db: AsyncSession = Depends(get_db)) -> None:
     result = await db.execute(select(Declaration).where(Declaration.id == decl_id))
     decl = result.scalar_one_or_none()
     if not decl:
@@ -114,13 +114,16 @@ async def delete_declaration(decl_id: int, db: AsyncSession = Depends(get_db)):
 
 
 @router.post("/{decl_id}/validate", response_model=ValidationResult)
-async def validate_declaration_endpoint(decl_id: int, db: AsyncSession = Depends(get_db)):
+async def validate_declaration_endpoint(decl_id: int, db: AsyncSession = Depends(get_db)) -> ValidationResult:
     result = await db.execute(
         select(Declaration).options(selectinload(Declaration.items)).where(Declaration.id == decl_id)
     )
     decl = result.scalar_one_or_none()
     if not decl:
         raise HTTPException(404, "신고서를 찾을 수 없습니다")
+
+    if decl.status not in ("draft", "validated"):
+        raise HTTPException(400, "초안 또는 검증완료 상태에서만 검증할 수 있습니다")
 
     data = {c.name: getattr(decl, c.name) for c in Declaration.__table__.columns}
     items = [
@@ -137,7 +140,7 @@ async def validate_declaration_endpoint(decl_id: int, db: AsyncSession = Depends
 
 
 @router.get("/stats/summary")
-async def get_stats(db: AsyncSession = Depends(get_db)):
+async def get_stats(db: AsyncSession = Depends(get_db)) -> dict:
     """대시보드용 상태별 건수 집계."""
     result = await db.execute(
         select(Declaration.status, func.count(Declaration.id)).group_by(Declaration.status)

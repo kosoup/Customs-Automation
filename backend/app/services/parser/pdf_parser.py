@@ -4,6 +4,7 @@ from typing import Optional
 
 import pdfplumber
 
+from ..constants import INCOTERMS_VALID
 from .base import BaseParser, ParsedInvoice, ParsedItem
 
 
@@ -30,8 +31,7 @@ def _extract_date(text: str) -> Optional[str]:
 
 
 def _extract_incoterms(text: str) -> Optional[str]:
-    valid = {"EXW", "FCA", "FAS", "FOB", "CFR", "CIF", "CPT", "CIP", "DAP", "DPU", "DDP"}
-    for term in valid:
+    for term in INCOTERMS_VALID:
         if re.search(rf"\b{term}\b", text.upper()):
             return term
     return None
@@ -110,9 +110,9 @@ class PdfParser(BaseParser):
 
         # 수출자 (Seller / Shipper / Exporter 키워드 다음 줄)
         for i, line in enumerate(all_text_lines):
-            if re.search(r"\b(seller|shipper|exporter|from)\b", line, re.IGNORECASE):
+            if re.search(r"^\s*(seller|shipper|exporter|from)\b", line, re.IGNORECASE):
                 # 같은 줄에 값이 있으면 사용, 없으면 다음 줄
-                after = re.sub(r"seller|shipper|exporter|from", "", line, flags=re.IGNORECASE).strip(" :/")
+                after = re.sub(r"^\s*(?:seller|shipper|exporter|from)\b", "", line, count=1, flags=re.IGNORECASE).strip(" :/")
                 if after:
                     result.exporter_name = after
                 elif i + 1 < len(all_text_lines):
@@ -121,8 +121,8 @@ class PdfParser(BaseParser):
 
         # 구매자
         for i, line in enumerate(all_text_lines):
-            if re.search(r"\b(buyer|consignee|importer|to)\b", line, re.IGNORECASE):
-                after = re.sub(r"buyer|consignee|importer|to", "", line, flags=re.IGNORECASE).strip(" :/")
+            if re.search(r"^\s*(buyer|consignee|importer|to)\b", line, re.IGNORECASE):
+                after = re.sub(r"^\s*(?:buyer|consignee|importer|to)\b", "", line, count=1, flags=re.IGNORECASE).strip(" :/")
                 if after:
                     result.buyer_name = after
                 elif i + 1 < len(all_text_lines):

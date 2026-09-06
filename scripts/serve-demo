@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON="$ROOT_DIR/backend/.venv/bin/python"
+if [[ ! -x "$PYTHON" ]]; then
+  echo "Run ./scripts/bootstrap first." >&2
+  exit 1
+fi
+DEMO_DIR="$(mktemp -d "${TMPDIR:-/tmp}/customs-browser-demo.XXXXXX")"
+trap 'rm -rf "$DEMO_DIR"' EXIT
+cd "$DEMO_DIR"
+export DATABASE_URL="sqlite+aiosqlite:///$DEMO_DIR/demo.db"
+export UPLOAD_DIR="$DEMO_DIR/uploads"
+export CORS_ORIGINS="http://localhost:5173,http://127.0.0.1:5173"
+export UNIPASS_API_KEY="" UNIPASS_KEY_HS_NAVI="" UNIPASS_KEY_HS_SEARCH=""
+export UNIPASS_KEY_CUSTOMS_CHECK="" UNIPASS_KEY_TARIFF=""
+export UTRADEHUB_API_KEY="" UTRADEHUB_SENDER_ID=""
+echo "Synthetic data only. Temporary DB/uploads are removed when this server exits."
+echo "API: http://127.0.0.1:8000 | Frontend: cd frontend && npm run dev"
+"$PYTHON" -m uvicorn app.main:app --app-dir "$ROOT_DIR/backend" --host 127.0.0.1 --port 8000

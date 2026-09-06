@@ -10,22 +10,7 @@ import {
   getApiErrorMessage,
 } from "../api/client";
 import type { DeclarationListItem } from "../types";
-
-const STATUS_COLORS: Record<string, string> = {
-  draft: "default",
-  validated: "blue",
-  submitted: "orange",
-  accepted: "green",
-  rejected: "red",
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  draft: "초안",
-  validated: "검증완료",
-  submitted: "제출됨",
-  accepted: "수리",
-  rejected: "반려",
-};
+import { STATUS_COLORS, STATUS_LABELS } from "../constants/status";
 
 export default function DeclarationList() {
   const navigate = useNavigate();

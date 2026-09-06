@@ -10,10 +10,10 @@ router = APIRouter(prefix="/api/settings", tags=["settings"])
 
 
 async def _get_or_create_settings(db: AsyncSession) -> CompanySettings:
-    result = await db.execute(select(CompanySettings).where(CompanySettings.id == 1))
+    result = await db.execute(select(CompanySettings).where(CompanySettings.id == CompanySettings.SINGLETON_ID))
     cs = result.scalar_one_or_none()
     if cs is None:
-        cs = CompanySettings(id=1)
+        cs = CompanySettings(id=CompanySettings.SINGLETON_ID)
         db.add(cs)
         await db.commit()
         await db.refresh(cs)
@@ -21,12 +21,12 @@ async def _get_or_create_settings(db: AsyncSession) -> CompanySettings:
 
 
 @router.get("", response_model=CompanySettingsResponse)
-async def get_settings(db: AsyncSession = Depends(get_db)):
+async def get_settings(db: AsyncSession = Depends(get_db)) -> CompanySettings:
     return await _get_or_create_settings(db)
 
 
 @router.put("", response_model=CompanySettingsResponse)
-async def update_settings(body: CompanySettingsUpdate, db: AsyncSession = Depends(get_db)):
+async def update_settings(body: CompanySettingsUpdate, db: AsyncSession = Depends(get_db)) -> CompanySettings:
     cs = await _get_or_create_settings(db)
     for field, value in body.model_dump(exclude_unset=True).items():
         setattr(cs, field, value)

@@ -8,7 +8,11 @@ from app.db.session import Base
 
 
 class CompanySettings(Base):
+    """단일 행(싱글턴)으로 운용되는 회사 설정 테이블."""
+
     __tablename__ = "company_settings"
+
+    SINGLETON_ID = 1
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
