@@ -1,14 +1,19 @@
 from collections.abc import AsyncIterator
+from decimal import Decimal
+from pathlib import Path
 
 import httpx
 import pytest
 import pytest_asyncio
+from lxml import etree
+from sqlalchemy import update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.pool import StaticPool
 
 from app.config import settings
 from app.db.session import Base, get_db
 from app.main import app
+from app.models.declaration import Declaration
 from app.services.parser.base import ParsedInvoice
 from app.services.parser.excel_parser import ExcelParser
 
@@ -235,3 +240,101 @@ async def test_invoice_upload_normalizes_filename(
     saved_files = list(tmp_path.iterdir())
     assert len(saved_files) == 1
     assert saved_files[0].name.endswith("_invoice.xlsx")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('export_path', ['export-xml', 'export-file?fmt=csv', 'export-file?fmt=xlsx'])
+async def test_invalid_draft_cannot_be_exported(client: httpx.AsyncClient, export_path: str) -> None:
+    created = await client.post('/api/declarations', json={})
+    declaration_id = created.json()['id']
+    validation = await client.post(f'/api/declarations/{declaration_id}/validate')
+    assert validation.json()['valid'] is False
+    response = await client.get(f'/api/declarations/{declaration_id}/{export_path}')
+    assert response.status_code == 400
+
+
+async def _create_validated_declaration(client: httpx.AsyncClient) -> int:
+    created = await client.post('/api/declarations', json={
+        'exporter_name': 'Synthetic Exporter', 'buyer_name': 'Synthetic Buyer',
+        'buyer_country_code': 'US', 'invoice_number': 'SYN-STATE-001',
+        'currency_code': 'USD', 'total_amount': 25.5,
+        'items': [{'item_seq': 1, 'product_name_en': 'Widget', 'hscode': '1234567890',
+                   'quantity': 2, 'unit': 'EA', 'unit_price': 12.75, 'amount': 25.5}],
+    })
+    assert created.status_code == 201
+    declaration_id = created.json()['id']
+    validation = await client.post(f'/api/declarations/{declaration_id}/validate')
+    assert validation.json()['valid'] is True
+    return declaration_id
+
+
+@pytest.mark.asyncio
+async def test_file_export_record_keeps_declaration_editable(client: httpx.AsyncClient) -> None:
+    declaration_id = await _create_validated_declaration(client)
+    response = await client.post(f'/api/declarations/{declaration_id}/submit?method=file_export')
+    assert response.status_code == 201
+    current = await client.get(f'/api/declarations/{declaration_id}')
+    assert current.json()['status'] == 'validated'
+    assert current.json()['submission_ref'] is None
+    edit = await client.put(f'/api/declarations/{declaration_id}', json={'buyer_name': 'Updated Synthetic Buyer'})
+    assert edit.status_code == 200
+    assert edit.json()['status'] == 'draft'
+    assert (await client.get(f'/api/declarations/{declaration_id}/export-xml')).status_code == 400
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize('terminal_status', ['submitted', 'accepted', 'rejected'])
+async def test_validation_cannot_reopen_terminal_declaration(
+    client: httpx.AsyncClient, terminal_status: str,
+) -> None:
+    declaration_id = await _create_validated_declaration(client)
+    async for db in app.dependency_overrides[get_db]():
+        await db.execute(update(Declaration).where(Declaration.id == declaration_id).values(status=terminal_status))
+        await db.commit()
+    response = await client.post(f'/api/declarations/{declaration_id}/validate')
+    assert response.status_code == 400
+    current = await client.get(f'/api/declarations/{declaration_id}')
+    assert current.json()['status'] == terminal_status
+
+
+@pytest.mark.asyncio
+async def test_export_rechecks_contents_even_if_status_is_validated(client: httpx.AsyncClient) -> None:
+    declaration_id = await _create_validated_declaration(client)
+    async for db in app.dependency_overrides[get_db]():
+        await db.execute(update(Declaration).where(Declaration.id == declaration_id).values(buyer_country_code='USA'))
+        await db.commit()
+    for path in ['export-xml', 'export-file?fmt=csv', 'export-file?fmt=xlsx']:
+        assert (await client.get(f'/api/declarations/{declaration_id}/{path}')).status_code == 400
+
+
+@pytest.mark.asyncio
+async def test_synthetic_pdf_upload_review_and_export(
+    client: httpx.AsyncClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path,
+) -> None:
+    monkeypatch.setattr(settings, 'UPLOAD_DIR', str(tmp_path))
+    fixture = Path(__file__).parent / 'fixtures' / 'synthetic-invoice.pdf'
+    response = await client.post('/api/invoices/upload', files={
+        'file': ('synthetic-invoice.pdf', fixture.read_bytes(), 'application/pdf'),
+    })
+    assert response.status_code == 201
+    declaration_id = response.json()['declaration_id']
+    current = (await client.get(f'/api/declarations/{declaration_id}')).json()
+    assert current['exporter_name'] == 'Synthetic Exporter'
+    assert current['buyer_name'] == 'Synthetic Buyer'
+    assert current['invoice_number'] == 'SYN-PDF-001'
+    assert len(current['items']) == 1
+    assert current['items'][0]['hscode'] == '1234567890'
+    assert Decimal(current['total_amount']) == Decimal('25.50')
+    assert Decimal(current['items'][0]['quantity']) == 2
+    assert Decimal(current['items'][0]['unit_price']) == Decimal('12.75')
+    assert (await client.get(f'/api/declarations/{declaration_id}/export-xml')).status_code == 400
+    review = await client.put(f'/api/declarations/{declaration_id}', json={'buyer_country_code': 'US'})
+    assert review.status_code == 200
+    validation = await client.post(f'/api/declarations/{declaration_id}/validate')
+    assert validation.json() == {'valid': True, 'errors': []}
+    for path in ['export-xml', 'export-file?fmt=csv', 'export-file?fmt=xlsx']:
+        exported = await client.get(f'/api/declarations/{declaration_id}/{path}')
+        assert exported.status_code == 200
+        assert exported.content
+        if path == 'export-xml':
+            assert etree.fromstring(exported.content).tag.endswith('Declaration')

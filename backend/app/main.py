@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.preparation import router as preparation_router
 from app.config import settings
 from app.db.session import engine, Base
 from app.api.declarations import router as declarations_router
@@ -34,6 +35,7 @@ app.add_middleware(
 
 app.include_router(declarations_router)
 app.include_router(invoices_router)
+app.include_router(preparation_router)
 app.include_router(submissions_router)
 app.include_router(settings_router)
 app.include_router(unipass_router)

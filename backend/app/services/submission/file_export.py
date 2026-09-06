@@ -4,19 +4,28 @@ UNI-PASS 웹 업로드용 수출신고서 파일 생성.
 """
 import csv
 import io
-from pathlib import Path
-from typing import List
 
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
-from app.models.declaration import Declaration, DeclarationItem
+from app.models.declaration import Declaration
+
+# CSV/Excel formula-injection guard: values pulled from parsed invoices are
+# attacker-influenced and must not be interpreted as formulas by spreadsheet
+# apps when the export is opened later (OWASP CSV Injection mitigation).
+_FORMULA_PREFIXES = ("=", "+", "-", "@", "\t", "\r")
+
+
+def _escape_formula(text: str) -> str:
+    if text and text[0] in _FORMULA_PREFIXES:
+        return "'" + text
+    return text
 
 
 def _val(v) -> str:
     if v is None:
         return ""
-    return str(v)
+    return _escape_formula(str(v))
 
 
 def generate_csv(declaration: Declaration) -> bytes:
@@ -101,6 +110,8 @@ def generate_excel(declaration: Declaration) -> bytes:
         return c
 
     def dcell(row, col, value):
+        if isinstance(value, str):
+            value = _escape_formula(value)
         c = ws.cell(row=row, column=col, value=value)
         c.alignment = Alignment(vertical="center", wrap_text=True)
         c.border = border
@@ -152,7 +163,7 @@ def generate_excel(declaration: Declaration) -> bytes:
     item_start_row = r + (len(meta_fields) + 1) // 2 + 2
     item_headers = ["란번호", "품명(한글)", "품명(영문)", "HS코드", "규격", "수량", "단위", "단가", "금액"]
     col_widths = [8, 20, 20, 14, 16, 10, 8, 12, 12]
-    for ci, (h, w) in enumerate(zip(item_headers, col_widths), start=1):
+    for ci, (h, w) in enumerate(zip(item_headers, col_widths, strict=True), start=1):
         hcell(item_start_row, ci, h, width=w)
 
     for item in sorted(declaration.items, key=lambda i: i.item_seq):

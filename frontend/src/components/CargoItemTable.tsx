@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AutoComplete, Button, Input, InputNumber, Table, Tag, Tooltip } from "antd";
 import { PlusOutlined, DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import type { DeclarationItem } from "../types";
@@ -15,12 +15,30 @@ interface HsState {
   isCustomsTarget: boolean;
 }
 
+// hsOptions/hsInfo는 배열 인덱스가 아니라 행마다 발급되는 고정 키로 관리한다.
+// 인덱스로 관리하면 행 삭제 시 뒤 행들의 인덱스가 당겨지면서 다른 행의 관세율/
+// 세관장확인 정보가 엉뚱한 행에 표시되는 버그가 있었다.
 export default function CargoItemTable({ items, onChange, readOnly }: Props) {
-  const [hsOptions, setHsOptions] = useState<Record<number, { value: string; label: string }[]>>({});
-  const [hsInfo, setHsInfo] = useState<Record<number, HsState>>({});
-  const debounceTimers = useRef<Record<number, ReturnType<typeof setTimeout>>>({});
+  const nextKeyRef = useRef(0);
+  const [rowKeys, setRowKeys] = useState<string[]>(() =>
+    items.map(() => `row-${nextKeyRef.current++}`)
+  );
+  const [hsOptions, setHsOptions] = useState<Record<string, { value: string; label: string }[]>>({});
+  const [hsInfo, setHsInfo] = useState<Record<string, HsState>>({});
+  const debounceTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+
+  // items가 외부(부모)에서 통째로 교체된 경우(예: 신고서 로드) 키를 다시 발급한다.
+  useEffect(() => {
+    if (items.length !== rowKeys.length) {
+      setRowKeys(items.map(() => `row-${nextKeyRef.current++}`));
+      setHsOptions({});
+      setHsInfo({});
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items.length]);
 
   const addItem = () => {
+    setRowKeys((prev) => [...prev, `row-${nextKeyRef.current++}`]);
     onChange([
       ...items,
       { item_seq: items.length + 1, quantity: 0, unit_price: 0, amount: 0 },
@@ -28,6 +46,14 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
   };
 
   const removeItem = (index: number) => {
+    const removedKey = rowKeys[index];
+    setRowKeys((prev) => prev.filter((_, i) => i !== index));
+    setHsOptions((prev) =>
+      Object.fromEntries(Object.entries(prev).filter(([key]) => key !== removedKey))
+    );
+    setHsInfo((prev) =>
+      Object.fromEntries(Object.entries(prev).filter(([key]) => key !== removedKey))
+    );
     const next = items
       .filter((_, i) => i !== index)
       .map((item, i) => ({ ...item, item_seq: i + 1 }));
@@ -53,21 +79,22 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
 
   const handleHsSearch = (index: number, value: string) => {
     updateItem(index, "hscode", value);
-    if (debounceTimers.current[index]) {
-      clearTimeout(debounceTimers.current[index]);
+    const key = rowKeys[index];
+    if (debounceTimers.current[key]) {
+      clearTimeout(debounceTimers.current[key]);
     }
     if (!value || value.length < 2) {
-      setHsOptions((prev) => ({ ...prev, [index]: [] }));
+      setHsOptions((prev) => ({ ...prev, [key]: [] }));
       return;
     }
-    debounceTimers.current[index] = setTimeout(async () => {
+    debounceTimers.current[key] = setTimeout(async () => {
       try {
         const result = await searchHsCode(value);
         const options = (result.items || []).map((item) => ({
           value: item.hscode,
           label: `${item.hscode}${item.name_ko ? ` - ${item.name_ko}` : ""}`,
         }));
-        setHsOptions((prev) => ({ ...prev, [index]: options }));
+        setHsOptions((prev) => ({ ...prev, [key]: options }));
       } catch {
         // 검색 실패 무시
       }
@@ -79,7 +106,8 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
     if (name_ko && !items[index].product_name_ko) {
       updateItem(index, "product_name_ko", name_ko);
     }
-    setHsOptions((prev) => ({ ...prev, [index]: [] }));
+    const key = rowKeys[index];
+    setHsOptions((prev) => ({ ...prev, [key]: [] }));
 
     // 관세율 + 세관장확인 병렬 조회
     const [tariffRes, checkRes] = await Promise.allSettled([
@@ -89,7 +117,7 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
 
     setHsInfo((prev) => ({
       ...prev,
-      [index]: {
+      [key]: {
         tariffRate:
           tariffRes.status === "fulfilled" && tariffRes.value.tariff_rate
             ? tariffRes.value.tariff_rate
@@ -129,7 +157,7 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
       dataIndex: "hscode",
       width: 180,
       render: (_: unknown, __: unknown, i: number) => {
-        const info = hsInfo[i];
+        const info = hsInfo[rowKeys[i]];
         return (
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
@@ -138,7 +166,7 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
               ) : (
                 <AutoComplete
                   value={items[i].hscode}
-                  options={hsOptions[i] || []}
+                  options={hsOptions[rowKeys[i]] || []}
                   onSearch={(v) => handleHsSearch(i, v)}
                   onSelect={(v, opt) => {
                     const name_ko = opt.label.includes(" - ")
@@ -255,7 +283,7 @@ export default function CargoItemTable({ items, onChange, readOnly }: Props) {
       <Table
         dataSource={items}
         columns={columns}
-        rowKey="item_seq"
+        rowKey={(_, i) => (i !== undefined ? rowKeys[i] ?? i : 0)}
         pagination={false}
         size="small"
         scroll={{ x: 1000 }}

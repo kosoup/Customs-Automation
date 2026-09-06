@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "This prototype OCR requires macOS and Xcode Command Line Tools." >&2
+  exit 1
+fi
+mkdir -p "$ROOT_DIR/backend/.local-bin"
+swiftc "$ROOT_DIR/backend/ocr/vision.swift" -o "$ROOT_DIR/backend/.local-bin/vision-ocr"
+echo "Local OCR ready. No external API key required."

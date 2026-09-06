@@ -1,0 +1,1145 @@
+{
+  "baseline_items": 0,
+  "elapsed_seconds": 1.22,
+  "common": [
+    {
+      "field": "환급신청인",
+      "expected": "2",
+      "actual": "2",
+      "match": true,
+      "kind": "profile"
+    },
+    {
+      "field": "간이자동정액환급여부",
+      "expected": "NO",
+      "actual": "NO",
+      "match": true,
+      "kind": "profile"
+    },
+    {
+      "field": "구매자코드",
+      "expected": "DEMO-BUYER-001",
+      "actual": "DEMO-BUYER-001",
+      "match": true,
+      "kind": "profile"
+    },
+    {
+      "field": "목적국",
+      "expected": "US",
+      "actual": "US",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "구매자",
+      "expected": "DEMO PLAY IMPORTS",
+      "actual": "DEMO PLAY IMPORTS",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "제조자",
+      "expected": "DEMO TOY WORKS",
+      "actual": "DEMO TOY WORKS",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "거래구분",
+      "expected": "11",
+      "actual": "11",
+      "match": true,
+      "kind": "profile"
+    },
+    {
+      "field": "결제방법",
+      "expected": "TT",
+      "actual": "TT",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "인도조건",
+      "expected": "FOB",
+      "actual": "FOB",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "통화단위",
+      "expected": "USD",
+      "actual": "USD",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "운임비",
+      "expected": "0.00",
+      "actual": "0.00",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "기타금액",
+      "expected": "0.00",
+      "actual": "0.00",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "총금액",
+      "expected": "225.00",
+      "actual": "225.00",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "총중량",
+      "expected": "15.00",
+      "actual": "15.00",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "전체순중량",
+      "expected": "12.00",
+      "actual": "12.00",
+      "match": true,
+      "kind": "document"
+    },
+    {
+      "field": "카톤수",
+      "expected": "3",
+      "actual": "3",
+      "match": true,
+      "kind": "document"
+    }
+  ],
+  "item_cells": [
+    {
+      "row": 1,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-001",
+      "actual": "Toy component PN-DEMO-001",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "수량",
+      "expected": "2",
+      "actual": "2",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "금액",
+      "expected": "5.00",
+      "actual": "5.00",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 1,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-002",
+      "actual": "Toy component PN-DEMO-002",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "수량",
+      "expected": "3",
+      "actual": "3",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "금액",
+      "expected": "7.50",
+      "actual": "7.50",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 2,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-003",
+      "actual": "Toy component PN-DEMO-003",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "수량",
+      "expected": "4",
+      "actual": "4",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "금액",
+      "expected": "10.00",
+      "actual": "10.00",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 3,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-004",
+      "actual": "Toy component PN-DEMO-004",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "수량",
+      "expected": "5",
+      "actual": "5",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "금액",
+      "expected": "12.50",
+      "actual": "12.50",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 4,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-005",
+      "actual": "Toy component PN-DEMO-005",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "수량",
+      "expected": "6",
+      "actual": "6",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "금액",
+      "expected": "15.00",
+      "actual": "15.00",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 5,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-006",
+      "actual": "Toy component PN-DEMO-006",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "수량",
+      "expected": "7",
+      "actual": "7",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "금액",
+      "expected": "17.50",
+      "actual": "17.50",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 6,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-007",
+      "actual": "Toy component PN-DEMO-007",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "수량",
+      "expected": "8",
+      "actual": "8",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "금액",
+      "expected": "20.00",
+      "actual": "20.00",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 7,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-008",
+      "actual": "Toy component PN-DEMO-008",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "수량",
+      "expected": "9",
+      "actual": "9",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "금액",
+      "expected": "22.50",
+      "actual": "22.50",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 8,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-009",
+      "actual": "Toy component PN-DEMO-009",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "수량",
+      "expected": "10",
+      "actual": "10",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "금액",
+      "expected": "25.00",
+      "actual": "25.00",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 9,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-010",
+      "actual": "Toy component PN-DEMO-010",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "수량",
+      "expected": "11",
+      "actual": "",
+      "match": false
+    },
+    {
+      "row": 10,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "금액",
+      "expected": "27.50",
+      "actual": "27.50",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 10,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-011",
+      "actual": "Toy component PN-DEMO-011",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "수량",
+      "expected": "12",
+      "actual": "12",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "금액",
+      "expected": "30.00",
+      "actual": "30.00",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 11,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "규격1",
+      "expected": "Toy component PN-DEMO-012",
+      "actual": "Toy component PN-DEMO-012",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "규격2",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "규격3",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "수량",
+      "expected": "13",
+      "actual": "13",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "단가",
+      "expected": "2.50",
+      "actual": "2.50",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "금액",
+      "expected": "32.50",
+      "actual": "32.50",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "FTA발급여부",
+      "expected": "N",
+      "actual": "N",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "FTA발급협정코드",
+      "expected": "",
+      "actual": "",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "세번부호",
+      "expected": "9503000000",
+      "actual": "9503000000",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "품명",
+      "expected": "PARTS OF TOYS",
+      "actual": "PARTS OF TOYS",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "거래품명",
+      "expected": "TOY COMPONENTS",
+      "actual": "TOY COMPONENTS",
+      "match": true
+    },
+    {
+      "row": 12,
+      "field": "순중량",
+      "expected": "",
+      "actual": "",
+      "match": true
+    }
+  ],
+  "issues": [
+    "1행 원산지코드: 확인 필요",
+    "2행 원산지코드: 확인 필요",
+    "3행 원산지코드: 확인 필요",
+    "4행 원산지코드: 확인 필요",
+    "5행 원산지코드: 확인 필요",
+    "6행 원산지코드: 확인 필요",
+    "7행 원산지코드: 확인 필요",
+    "8행 원산지코드: 확인 필요",
+    "9행 원산지코드: 확인 필요",
+    "10행 수량: 확인 필요",
+    "10행 원산지코드: 확인 필요",
+    "10행 숫자 판독 실패: 수량·단가·금액을 대조하세요",
+    "11행 원산지코드: 확인 필요",
+    "12행 원산지코드: 확인 필요"
+  ],
+  "limits": "Single synthetic case, some fields are explicit test profile defaults. Not a general accuracy measurement. No ecom connection."
+}

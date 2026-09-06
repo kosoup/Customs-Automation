@@ -1,0 +1,1179 @@
+{
+  "common": {
+    "환급신청인": {
+      "value": "2",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "간이자동정액환급여부": {
+      "value": "NO",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "구매자코드": {
+      "value": "DEMO-BUYER-001",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "목적국": {
+      "value": "US",
+      "page": 1,
+      "evidence": "Destination: United States (US)",
+      "kind": "document"
+    },
+    "구매자": {
+      "value": "DEMO PLAY IMPORTS",
+      "page": 1,
+      "evidence": "Buyer: DEMO PLAY IMPORTS",
+      "kind": "document"
+    },
+    "제조자": {
+      "value": "DEMO TOY WORKS",
+      "page": 1,
+      "evidence": "Seller / Manufacturer: DEMO TOY WORKS",
+      "kind": "document"
+    },
+    "거래구분": {
+      "value": "11",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "결제방법": {
+      "value": "TT",
+      "page": 1,
+      "evidence": "Terms: FOB BUSAN I Currency: USD I Payment: T/T",
+      "kind": "document"
+    },
+    "인도조건": {
+      "value": "FOB",
+      "page": 1,
+      "evidence": "Terms: FOB BUSAN I Currency: USD I Payment: T/T",
+      "kind": "document"
+    },
+    "통화단위": {
+      "value": "USD",
+      "page": 1,
+      "evidence": "Terms: FOB BUSAN I Currency: USD I Payment: T/T",
+      "kind": "document"
+    },
+    "운임비": {
+      "value": "0.00",
+      "page": 1,
+      "evidence": "Freight billed on invoice: USD 0.00 | Other charges: USD 0.00",
+      "kind": "document"
+    },
+    "기타금액": {
+      "value": "0.00",
+      "page": 1,
+      "evidence": "Freight billed on invoice: USD 0.00 | Other charges: USD 0.00",
+      "kind": "document"
+    },
+    "총금액": {
+      "value": "225.00",
+      "page": 1,
+      "evidence": "Total invoice amount: USD 225.00",
+      "kind": "document"
+    },
+    "총중량": {
+      "value": "15.00",
+      "page": 2,
+      "evidence": "Gross weight: 15.00 KG I Total net weight: 12.00 KG",
+      "kind": "document"
+    },
+    "전체순중량": {
+      "value": "12.00",
+      "page": 2,
+      "evidence": "Gross weight: 15.00 KG I Total net weight: 12.00 KG",
+      "kind": "document"
+    },
+    "카톤수": {
+      "value": "3",
+      "page": 2,
+      "evidence": "Quantity: 90 pieces I Packages: 3 cartons",
+      "kind": "document"
+    }
+  },
+  "items": [
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-001",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-001 | 2 | 2.50 | 5.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "2",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-001 | 2 | 2.50 | 5.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-001 | 2 | 2.50 | 5.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "5.00",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-001 | 2 | 2.50 | 5.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-002",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-002 | 3 | 2.50 | 7.50",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "3",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-002 | 3 | 2.50 | 7.50",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-002 | 3 | 2.50 | 7.50",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "7.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-002 | 3 | 2.50 | 7.50",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-003",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-003 | 4 | 2.50 | 10.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "4",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-003 | 4 | 2.50 | 10.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-003 | 4 | 2.50 | 10.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "10.00",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-003 | 4 | 2.50 | 10.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-004",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-004 | 5 | 2.50 | 12.50",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "5",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-004 | 5 | 2.50 | 12.50",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-004 | 5 | 2.50 | 12.50",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "12.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-004 | 5 | 2.50 | 12.50",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-005",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-005 | 6 | 2.50 | 15.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "6",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-005 | 6 | 2.50 | 15.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-005 | 6 | 2.50 | 15.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "15.00",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-005 | 6 | 2.50 | 15.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-006",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-006 | 7 | 2.50 | 17.50",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "7",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-006 | 7 | 2.50 | 17.50",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-006 | 7 | 2.50 | 17.50",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "17.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-006 | 7 | 2.50 | 17.50",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-007",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-007 | 8 | 2.50 | 20.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "8",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-007 | 8 | 2.50 | 20.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-007 | 8 | 2.50 | 20.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "20.00",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-007 | 8 | 2.50 | 20.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-008",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-008 | 9 | 2.50 | 22.50",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "9",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-008 | 9 | 2.50 | 22.50",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-008 | 9 | 2.50 | 22.50",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "22.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-008 | 9 | 2.50 | 22.50",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-009",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-009 | 10 | 2.50 | 25.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "10",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-009 | 10 | 2.50 | 25.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-009 | 10 | 2.50 | 25.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "25.00",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-009 | 10 | 2.50 | 25.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-010",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-010 | 2.50 | 27.50",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-010 | 2.50 | 27.50",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "27.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-010 | 2.50 | 27.50",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-011",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-011 | 12 | 2.50 | 30.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "12",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-011 | 12 | 2.50 | 30.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-011 | 12 | 2.50 | 30.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "30.00",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-011 | 12 | 2.50 | 30.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Toy component PN-DEMO-012",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-012 | 13 | 2.50 | 32.50",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "13",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-012 | 13 | 2.50 | 32.50",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "2.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-012 | 13 | 2.50 | 32.50",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "32.50",
+        "page": 1,
+        "evidence": "Toy component PN-DEMO-012 | 13 | 2.50 | 32.50",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "N",
+        "page": 1,
+        "evidence": "FTA preference requested: NO",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "",
+        "page": null,
+        "evidence": "서류에 FTA N 명시",
+        "kind": "blank"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS as supplied by seller: 9503000000 (fictional test assignment)",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS I Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 2,
+        "evidence": "Origin statement for this fictional shipment: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    }
+  ],
+  "issues": [
+    "1행 원산지코드: 확인 필요",
+    "2행 원산지코드: 확인 필요",
+    "3행 원산지코드: 확인 필요",
+    "4행 원산지코드: 확인 필요",
+    "5행 원산지코드: 확인 필요",
+    "6행 원산지코드: 확인 필요",
+    "7행 원산지코드: 확인 필요",
+    "8행 원산지코드: 확인 필요",
+    "9행 원산지코드: 확인 필요",
+    "10행 수량: 확인 필요",
+    "10행 원산지코드: 확인 필요",
+    "10행 숫자 판독 실패: 수량·단가·금액을 대조하세요",
+    "11행 원산지코드: 확인 필요",
+    "12행 원산지코드: 확인 필요"
+  ],
+  "pages": [
+    {
+      "number": 1,
+      "text": "SYNTHETIC DEMO - NOT FOR CUSTOMS FILING\nCOMMERCIAL INVOICE / DEMO-001\nSeller / Manufacturer: DEMO TOY WORKS\nBuyer: DEMO PLAY IMPORTS\nDestination: United States (US)\nTerms: FOB BUSAN I Currency: USD I Payment: T/T\nFTA preference requested: NO\nHS as supplied by seller: 9503000000 (fictional test assignment)\nGoods: PARTS OF TOYS I Trade name: TOY COMPONENTS\nDescription / Part number | Qty | Unit USD | Amount USD\nToy component PN-DEMO-001 | 2 | 2.50 | 5.00\nToy component PN-DEMO-002 | 3 | 2.50 | 7.50\nToy component PN-DEMO-003 | 4 | 2.50 | 10.00\nToy component PN-DEMO-004 | 5 | 2.50 | 12.50\nToy component PN-DEMO-005 | 6 | 2.50 | 15.00\nToy component PN-DEMO-006 | 7 | 2.50 | 17.50\nToy component PN-DEMO-007 | 8 | 2.50 | 20.00\nToy component PN-DEMO-008 | 9 | 2.50 | 22.50\nToy component PN-DEMO-009 | 10 | 2.50 | 25.00\nToy component PN-DEMO-010 | 2.50 | 27.50\nToy component PN-DEMO-011 | 12 | 2.50 | 30.00\nToy component PN-DEMO-012 | 13 | 2.50 | 32.50\nTotal invoice amount: USD 225.00\nFreight billed on invoice: USD 0.00 | Other charges: USD 0.00\nAll names, values and goods are invented for software testing."
+    },
+    {
+      "number": 2,
+      "text": "SYNTHETIC DEMO - NOT FOR CUSTOMS FILING\nPACKING LIST / DEMO-001\nSeller: DEMO TOY WORKS\nBuyer: DEMO PLAY IMPORTS\nGoods: TOY COMPONENTS PN-DEMO-001 through PN-DEMO-012\nQuantity: 90 pieces I Packages: 3 cartons\nGross weight: 15.00 KG I Total net weight: 12.00 KG\nItem-level net weights: not supplied\nOrigin statement for this fictional shipment: KR\nShipment reference: DEMO-001\nThe invoice and packing list belong to the same synthetic shipment.\nNo real transport document or origin certificate is included."
+    }
+  ],
+  "engine": "Apple Vision OCR + 명시적 항목 규칙 (대표 영문 양식 시제품)",
+  "status": "draft",
+  "columns": [
+    "규격1",
+    "규격2",
+    "규격3",
+    "수량",
+    "단가",
+    "금액",
+    "FTA발급여부",
+    "FTA발급협정코드",
+    "세번부호",
+    "품명",
+    "거래품명",
+    "순중량",
+    "원산지",
+    "원산지코드"
+  ],
+  "elapsed_seconds": 0.43
+}

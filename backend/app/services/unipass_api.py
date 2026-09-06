@@ -7,6 +7,8 @@ import xml.etree.ElementTree as ET
 from typing import Optional
 
 import httpx
+from defusedxml import ElementTree as DET
+from defusedxml.common import DefusedXmlException
 
 from app.config import settings
 
@@ -43,8 +45,8 @@ async def search_hs(keyword: str, page: int = 1, size: int = 10) -> dict:
         return {"items": [], "error": str(e)}
 
     try:
-        root = ET.fromstring(resp.text)
-    except ET.ParseError:
+        root = DET.fromstring(resp.text)
+    except (ET.ParseError, DefusedXmlException):
         return {"items": [], "error": "XML 파싱 실패"}
 
     items = []
@@ -77,11 +79,13 @@ async def get_tariff(hscode: str) -> dict:
         return {"hscode": hscode, "error": str(e)}
 
     try:
-        root = ET.fromstring(resp.text)
-    except ET.ParseError:
+        root = DET.fromstring(resp.text)
+    except (ET.ParseError, DefusedXmlException):
         return {"hscode": hscode, "error": "XML 파싱 실패"}
 
-    item_el = root.find(".//item") or root.find(".//tariffRtInfo")
+    item_el = root.find(".//item")
+    if item_el is None:
+        item_el = root.find(".//tariffRtInfo")
     if item_el is None:
         item_el = root
 
@@ -112,8 +116,8 @@ async def check_customs_confirmation(hscode: str) -> dict:
         return {"is_target": False, "error": str(e)}
 
     try:
-        root = ET.fromstring(resp.text)
-    except ET.ParseError:
+        root = DET.fromstring(resp.text)
+    except (ET.ParseError, DefusedXmlException):
         return {"is_target": False, "error": "XML 파싱 실패"}
 
     requirements = []

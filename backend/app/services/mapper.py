@@ -4,6 +4,7 @@ import re
 from datetime import date
 from typing import Optional
 
+from .constants import INCOTERMS_VALID
 from .parser.base import ParsedInvoice
 
 # 주요 국가명 → ISO 2자리 코드
@@ -27,9 +28,6 @@ COUNTRY_MAP = {
     "philippines": "PH",
     "hong kong": "HK",
 }
-
-INCOTERMS_VALID = {"EXW", "FCA", "FAS", "FOB", "CFR", "CIF", "CPT", "CIP", "DAP", "DPU", "DDP"}
-
 
 def _parse_date(text: Optional[str]) -> Optional[date]:
     """YYYY-MM-DD 문자열을 date 객체로 변환."""

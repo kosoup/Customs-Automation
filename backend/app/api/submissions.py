@@ -1,7 +1,8 @@
+import logging
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from fastapi.responses import Response, StreamingResponse
+from fastapi.responses import Response
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
@@ -13,11 +14,14 @@ from app.models.submission import Submission
 from app.schemas.submission import SubmissionResponse, TrackResponse
 from app.services.submission import file_export, utradehub, unipass_tracker
 from app.services.xml_generator import generate_govcbr830_xml
+from app.services.validator import validate_declaration
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/declarations", tags=["submissions"])
 
 
-async def _get_validated_decl(decl_id: int, db: AsyncSession) -> Declaration:
+async def _get_decl(decl_id: int, db: AsyncSession) -> Declaration:
     result = await db.execute(
         select(Declaration).options(selectinload(Declaration.items)).where(Declaration.id == decl_id)
     )
@@ -27,18 +31,32 @@ async def _get_validated_decl(decl_id: int, db: AsyncSession) -> Declaration:
     return decl
 
 
+def _require_exportable(decl: Declaration) -> None:
+    if decl.status not in ("validated", "submitted", "accepted"):
+        raise HTTPException(400, "저장 후 검증을 통과한 신고서만 내보낼 수 있습니다.")
+    data = {column.name: getattr(decl, column.name) for column in Declaration.__table__.columns}
+    items = [
+        {column.name: getattr(item, column.name) for column in item.__table__.columns}
+        for item in decl.items
+    ]
+    if validate_declaration(data, items):
+        raise HTTPException(400, "신고서 내용에 오류가 있습니다. 수정 후 다시 검증하세요.")
+
+
 @router.post("/{decl_id}/submit", response_model=SubmissionResponse, status_code=201)
 async def submit_declaration(
     decl_id: int,
     method: str = Query("file_export", description="utradehub | file_export"),
     db: AsyncSession = Depends(get_db),
-):
-    decl = await _get_validated_decl(decl_id, db)
+) -> Submission:
+    decl = await _get_decl(decl_id, db)
 
     if decl.status not in ("validated",):
         raise HTTPException(400, "검증(validated) 상태의 신고서만 제출할 수 있습니다")
     if method not in ("utradehub", "file_export"):
         raise HTTPException(400, f"지원하지 않는 제출 방식: {method}")
+
+    _require_exportable(decl)
 
     sub = Submission(declaration_id=decl_id, method=method, status="pending")
     db.add(sub)
@@ -46,6 +64,7 @@ async def submit_declaration(
     try:
         if method == "utradehub":
             result = await utradehub.submit(decl)
+            decl.status = "submitted"
             sub.status = "success"
             sub.tracking_number = result.get("tracking_number")
             sub.response_raw = result.get("response_raw")
@@ -54,7 +73,6 @@ async def submit_declaration(
             # 여기서는 이력만 기록
             sub.status = "success"
             sub.tracking_number = None
-        decl.status = "submitted"
         if sub.tracking_number:
             decl.submission_ref = sub.tracking_number
 
@@ -62,12 +80,13 @@ async def submit_declaration(
         sub.status = "failed"
         sub.error_message = str(e)
         await db.commit()
-        raise HTTPException(503, str(e))
+        raise HTTPException(503, str(e)) from e
     except Exception as e:
+        logger.exception("신고서 제출 중 예기치 못한 오류 (declaration_id=%s, method=%s)", decl_id, method)
         sub.status = "failed"
         sub.error_message = str(e)
         await db.commit()
-        raise HTTPException(502, f"제출 중 오류가 발생했습니다: {e}")
+        raise HTTPException(502, f"제출 중 오류가 발생했습니다: {e}") from e
 
     await db.commit()
     await db.refresh(sub)
@@ -75,8 +94,8 @@ async def submit_declaration(
 
 
 @router.get("/{decl_id}/track", response_model=TrackResponse)
-async def track_declaration(decl_id: int, db: AsyncSession = Depends(get_db)):
-    decl = await _get_validated_decl(decl_id, db)
+async def track_declaration(decl_id: int, db: AsyncSession = Depends(get_db)) -> TrackResponse:
+    decl = await _get_decl(decl_id, db)
 
     if decl.submission_ref:
         result = await unipass_tracker.track_by_ref(decl.submission_ref)
@@ -102,11 +121,12 @@ async def export_file(
     decl_id: int,
     fmt: str = Query("xlsx", description="xlsx | csv"),
     db: AsyncSession = Depends(get_db),
-):
-    decl = await _get_validated_decl(decl_id, db)
+) -> Response:
+    decl = await _get_decl(decl_id, db)
 
     if fmt not in ("xlsx", "csv"):
         raise HTTPException(400, f"지원하지 않는 내보내기 형식: {fmt}")
+    _require_exportable(decl)
     if fmt == "csv":
         content = file_export.generate_csv(decl)
         filename = f"declaration_{decl_id}.csv"
@@ -124,11 +144,13 @@ async def export_file(
 
 
 @router.get("/{decl_id}/export-xml")
-async def export_xml(decl_id: int, db: AsyncSession = Depends(get_db)):
+async def export_xml(decl_id: int, db: AsyncSession = Depends(get_db)) -> Response:
     """GOVCBR830 XML 다운로드."""
-    decl = await _get_validated_decl(decl_id, db)
+    decl = await _get_decl(decl_id, db)
 
-    cs_result = await db.execute(select(CompanySettings).where(CompanySettings.id == 1))
+    _require_exportable(decl)
+
+    cs_result = await db.execute(select(CompanySettings).where(CompanySettings.id == CompanySettings.SINGLETON_ID))
     cs = cs_result.scalar_one_or_none()
 
     xml_bytes = generate_govcbr830_xml(decl, cs)

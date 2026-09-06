@@ -1,0 +1,275 @@
+{
+  "case": "DEMO-001",
+  "synthetic": true,
+  "not_for_filing": true,
+  "common": {
+    "환급신청인": {
+      "value": "2",
+      "source": "demo profile; synthetic assumption"
+    },
+    "간이자동정액환급여부": {
+      "value": "NO",
+      "source": "demo profile; synthetic assumption"
+    },
+    "구매자코드": {
+      "value": "DEMO-BUYER-001",
+      "source": "demo profile; not a real customs code"
+    },
+    "목적국": {
+      "value": "US",
+      "source": "invoice p1"
+    },
+    "구매자": {
+      "value": "DEMO PLAY IMPORTS",
+      "source": "invoice p1"
+    },
+    "제조자": {
+      "value": "DEMO TOY WORKS",
+      "source": "invoice p1"
+    },
+    "거래구분": {
+      "value": "11",
+      "source": "demo profile; synthetic assumption"
+    },
+    "결제방법": {
+      "value": "TT",
+      "source": "invoice p1; fixture mapping T/T -> TT"
+    },
+    "인도조건": {
+      "value": "FOB",
+      "source": "invoice p1"
+    },
+    "통화단위": {
+      "value": "USD",
+      "source": "invoice p1"
+    },
+    "운임비": {
+      "value": "0.00",
+      "source": "invoice p1; invoice currency USD, ecom conversion unverified"
+    },
+    "기타금액": {
+      "value": "0.00",
+      "source": "invoice p1; invoice currency USD"
+    },
+    "총금액": {
+      "value": "225.00",
+      "source": "invoice p1"
+    },
+    "총중량": {
+      "value": "15.00",
+      "unit": "KG",
+      "source": "packing list p2"
+    },
+    "전체순중량": {
+      "value": "12.00",
+      "unit": "KG",
+      "source": "packing list p2; not distributed to items"
+    },
+    "카톤수": {
+      "value": 3,
+      "source": "packing list p2"
+    }
+  },
+  "items": [
+    {
+      "규격1": "Toy component PN-DEMO-001",
+      "규격2": "",
+      "규격3": "",
+      "수량": 2,
+      "단가": "2.50",
+      "금액": "5.00",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-002",
+      "규격2": "",
+      "규격3": "",
+      "수량": 3,
+      "단가": "2.50",
+      "금액": "7.50",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-003",
+      "규격2": "",
+      "규격3": "",
+      "수량": 4,
+      "단가": "2.50",
+      "금액": "10.00",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-004",
+      "규격2": "",
+      "규격3": "",
+      "수량": 5,
+      "단가": "2.50",
+      "금액": "12.50",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-005",
+      "규격2": "",
+      "규격3": "",
+      "수량": 6,
+      "단가": "2.50",
+      "금액": "15.00",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-006",
+      "규격2": "",
+      "규격3": "",
+      "수량": 7,
+      "단가": "2.50",
+      "금액": "17.50",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-007",
+      "규격2": "",
+      "규격3": "",
+      "수량": 8,
+      "단가": "2.50",
+      "금액": "20.00",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-008",
+      "규격2": "",
+      "규격3": "",
+      "수량": 9,
+      "단가": "2.50",
+      "금액": "22.50",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-009",
+      "규격2": "",
+      "규격3": "",
+      "수량": 10,
+      "단가": "2.50",
+      "금액": "25.00",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-010",
+      "규격2": "",
+      "규격3": "",
+      "수량": 11,
+      "단가": "2.50",
+      "금액": "27.50",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-011",
+      "규격2": "",
+      "규격3": "",
+      "수량": 12,
+      "단가": "2.50",
+      "금액": "30.00",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    },
+    {
+      "규격1": "Toy component PN-DEMO-012",
+      "규격2": "",
+      "규격3": "",
+      "수량": 13,
+      "단가": "2.50",
+      "금액": "32.50",
+      "FTA발급여부": "N",
+      "FTA발급협정코드": "",
+      "세번부호": "9503000000",
+      "품명": "PARTS OF TOYS",
+      "거래품명": "TOY COMPONENTS",
+      "순중량": null,
+      "source_page": 1
+    }
+  ],
+  "additional_item_fields": {
+    "원산지": {
+      "value": "KR",
+      "source": "packing list p2"
+    },
+    "원산지코드": {
+      "value": null,
+      "reason": "meaning and mapping unconfirmed; review required"
+    }
+  },
+  "expected_review": [
+    "원산지코드: 화면상 의미 및 매핑 미확인",
+    "품목별 순중량은 공란 유지; 전체 순중량을 임의 배분하지 않음"
+  ],
+  "limitations": [
+    "FTA N is explicitly stated for this fixture, not inferred from a missing certificate",
+    "HS is a synthetic document value, not a legal classification decision",
+    "Profile values are test assumptions, not user defaults",
+    "This is a baseline with review items, not a fully automatic success case"
+  ]
+}
