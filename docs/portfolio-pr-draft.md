@@ -16,15 +16,6 @@
 
 ## 게시 상태
 
-원격 main과 로컬 기준 커밋 a13e78d가 일치한다. 저장소 조회는 가능하지만 GitHub 연결 앱의 blob 생성이 HTTP 403 Resource not accessible by integration으로 거부됐다. 기존 gh CLI 토큰도 만료돼 원격 PR과 CI 실행은 완료하지 못했다.
+GitHub 인증을 복구하고 `portfolio/ocr-draft-evaluation` 브랜치를 게시했다. [Draft PR #3](https://github.com/kosoup/Customs-Automation/pull/3)에서 변경을 검토할 수 있다. 최신 원격 검사 결과는 [PR checks](https://github.com/kosoup/Customs-Automation/pull/3/checks)에서 확인한다.
 
-검토한 변경을 로컬 별도 브랜치 `portfolio/ocr-draft-evaluation`에 보존한다. 원래 워킹트리와 인덱스는 유지한다. 실제 문서·DB·업로드·환경 파일은 포함하지 않고 합성 샘플만 포함한다.
-
-본인 터미널에서 `gh auth login -h github.com`으로 인증을 복구한 뒤 다음 순서로 게시할 수 있다. 토큰을 채팅에 전달할 필요는 없다.
-
-```bash
-git push -u origin portfolio/ocr-draft-evaluation
-gh pr create --draft --base main --head portfolio/ocr-draft-evaluation --title "feat: add local OCR draft preparation and portfolio evidence" --body-file docs/portfolio-pr-draft.md
-```
-
-PR 생성 뒤 GitHub Actions 결과를 확인한다. 아직 원격에 업로드됐거나 CI가 통과했다고 표현하지 않는다.
+원래 로컬 워킹트리와 인덱스는 유지했다. 실제 문서·DB·업로드·환경 파일은 포함하지 않았으며, 합성 샘플만 게시했다. PR은 검토를 위한 초안 상태이며 main에 병합하지 않았다.
