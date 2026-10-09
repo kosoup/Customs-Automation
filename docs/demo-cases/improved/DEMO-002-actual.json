@@ -1,0 +1,390 @@
+{
+  "common": {
+    "환급신청인": {
+      "value": "2",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "간이자동정액환급여부": {
+      "value": "NO",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "구매자코드": {
+      "value": "DEMO-002-BUYER",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "목적국": {
+      "value": "DE",
+      "page": 1,
+      "evidence": "Destination: Germany (DE)",
+      "kind": "document"
+    },
+    "구매자": {
+      "value": "DEMO GEAR IMPORTS",
+      "page": 1,
+      "evidence": "Buyer: DEMO GEAR IMPORTS",
+      "kind": "document"
+    },
+    "제조자": {
+      "value": "DEMO GEAR WORKS",
+      "page": 1,
+      "evidence": "Manufacturer: DEMO GEAR WORKS",
+      "kind": "document"
+    },
+    "거래구분": {
+      "value": "11",
+      "page": null,
+      "evidence": "사용자가 적용한 설정값 (PDF 추출 아님)",
+      "kind": "profile"
+    },
+    "결제방법": {
+      "value": "TT",
+      "page": 1,
+      "evidence": "Payment: T/T",
+      "kind": "document"
+    },
+    "인도조건": {
+      "value": "FCA",
+      "page": 1,
+      "evidence": "Terms: FCA",
+      "kind": "document"
+    },
+    "통화단위": {
+      "value": "EUR",
+      "page": 1,
+      "evidence": "Currency: EUR",
+      "kind": "document"
+    },
+    "운임비": {
+      "value": "0.00",
+      "page": 1,
+      "evidence": "Freight: EUR 0.00",
+      "kind": "document"
+    },
+    "기타금액": {
+      "value": "0.00",
+      "page": 1,
+      "evidence": "Other charges: EUR 0.00",
+      "kind": "document"
+    },
+    "총금액": {
+      "value": "60.00",
+      "page": 1,
+      "evidence": "Total amount: EUR 60.00",
+      "kind": "document"
+    },
+    "총중량": {
+      "value": "8.00",
+      "page": 1,
+      "evidence": "Gross weight: 8.00 KG",
+      "kind": "document"
+    },
+    "전체순중량": {
+      "value": "6.00",
+      "page": 1,
+      "evidence": "Total net weight: 6.00 KG",
+      "kind": "document"
+    },
+    "카톤수": {
+      "value": "2",
+      "page": 1,
+      "evidence": "Packages: 2 cartons",
+      "kind": "document"
+    }
+  },
+  "items": [
+    {
+      "규격1": {
+        "value": "Assembly PN-DEMO-002-001",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-001 | 10.00 | 2 | 5.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "2",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-001 | 10.00 | 2 | 5.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "5.00",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-001 | 10.00 | 2 | 5.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "10.00",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-001 | 10.00 | 2 | 5.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "Y",
+        "page": 1,
+        "evidence": "FTA preference requested: YES",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "106",
+        "page": 1,
+        "evidence": "FTA agreement code: 106",
+        "kind": "document"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS code: 9503000000",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS | Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS | Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 1,
+        "evidence": "Origin: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Assembly PN-DEMO-002-002",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-002 | 20.00 | 4 | 5.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "4",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-002 | 20.00 | 4 | 5.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "5.00",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-002 | 20.00 | 4 | 5.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "20.00",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-002 | 20.00 | 4 | 5.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "Y",
+        "page": 1,
+        "evidence": "FTA preference requested: YES",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "106",
+        "page": 1,
+        "evidence": "FTA agreement code: 106",
+        "kind": "document"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS code: 9503000000",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS | Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS | Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 1,
+        "evidence": "Origin: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    },
+    {
+      "규격1": {
+        "value": "Assembly PN-DEMO-002-003",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-003 | 30.00 | 6 | 5.00",
+        "kind": "document"
+      },
+      "규격2": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "규격3": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "수량": {
+        "value": "6",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-003 | 30.00 | 6 | 5.00",
+        "kind": "document"
+      },
+      "단가": {
+        "value": "5.00",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-003 | 30.00 | 6 | 5.00",
+        "kind": "document"
+      },
+      "금액": {
+        "value": "30.00",
+        "page": 1,
+        "evidence": "Assembly PN-DEMO-002-003 | 30.00 | 6 | 5.00",
+        "kind": "document"
+      },
+      "FTA발급여부": {
+        "value": "Y",
+        "page": 1,
+        "evidence": "FTA preference requested: YES",
+        "kind": "document"
+      },
+      "FTA발급협정코드": {
+        "value": "106",
+        "page": 1,
+        "evidence": "FTA agreement code: 106",
+        "kind": "document"
+      },
+      "세번부호": {
+        "value": "9503000000",
+        "page": 1,
+        "evidence": "HS code: 9503000000",
+        "kind": "document"
+      },
+      "품명": {
+        "value": "PARTS OF TOYS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS | Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "거래품명": {
+        "value": "TOY COMPONENTS",
+        "page": 1,
+        "evidence": "Goods: PARTS OF TOYS | Trade name: TOY COMPONENTS",
+        "kind": "document"
+      },
+      "순중량": {
+        "value": "",
+        "page": null,
+        "evidence": "빈칸 유지; 미제공 값을 추정하지 않음",
+        "kind": "blank"
+      },
+      "원산지": {
+        "value": "KR",
+        "page": 1,
+        "evidence": "Origin: KR",
+        "kind": "document"
+      },
+      "원산지코드": {
+        "value": "",
+        "page": null,
+        "evidence": "",
+        "kind": "missing"
+      }
+    }
+  ],
+  "issues": [
+    "1행 원산지코드: 확인 필요",
+    "2행 원산지코드: 확인 필요",
+    "3행 원산지코드: 확인 필요"
+  ],
+  "pages": [
+    {
+      "number": 1,
+      "text": "COMMERCIAL INVOICE / PACKING SUMMARY\nDEMO-002 | SYNTHETIC ONLY - NOT FOR CUSTOMS FILING\nBuyer: DEMO GEAR IMPORTS\nManufacturer: DEMO GEAR WORKS\nDestination: Germany (DE)\nTerms: FCA\nCurrency: EUR\nPayment: T/T\nFTA preference requested: YES\nFTA agreement code: 106\nHS code: 9503000000\nGoods: PARTS OF TOYS | Trade name: TOY COMPONENTS\nOrigin: KR\nDescription | Amount | Qty | Unit\nAssembly PN-DEMO-002-001 | 10.00 | 2 | 5.00\nAssembly PN-DEMO-002-002 | 20.00 | 4 | 5.00\nAssembly PN-DEMO-002-003 | 30.00 | 6 | 5.00\nTotal amount: EUR 60.00\nFreight: EUR 0.00\nOther charges: EUR 0.00\nGross weight: 8.00 KG\nTotal net weight: 6.00 KG\nPackages: 2 cartons\nAll parties, codes and values are fictional. HS/FTA codes are test values, not legal advice.\nItem net weights and customs origin codes are intentionally unspecified. Page 1 of 1"
+    }
+  ],
+  "engine": "Apple Vision OCR + 명시적 항목 규칙 (대표 영문 양식 시제품)",
+  "status": "draft",
+  "columns": [
+    "규격1",
+    "규격2",
+    "규격3",
+    "수량",
+    "단가",
+    "금액",
+    "FTA발급여부",
+    "FTA발급협정코드",
+    "세번부호",
+    "품명",
+    "거래품명",
+    "순중량",
+    "원산지",
+    "원산지코드"
+  ],
+  "elapsed_seconds": 0.3
+}

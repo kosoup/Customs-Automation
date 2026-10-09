@@ -5,7 +5,9 @@ import type {
   ValidationResult,
 } from "../types";
 
-const api = axios.create({ baseURL: "http://localhost:8000/api" });
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+const api = axios.create({ baseURL: `${API_BASE_URL}/api` });
 
 export function getApiErrorMessage(error: unknown, fallback: string): string {
   if (axios.isAxiosError(error)) {
@@ -77,7 +79,7 @@ export async function trackDeclaration(id: number): Promise<Record<string, strin
 }
 
 export function exportFileUrl(id: number, fmt: "xlsx" | "csv" = "xlsx") {
-  return `http://localhost:8000/api/declarations/${id}/export-file?fmt=${fmt}`;
+  return `${API_BASE_URL}/api/declarations/${id}/export-file?fmt=${fmt}`;
 }
 
 // ── 회사 설정 ──────────────────────────────────────────────
@@ -146,7 +148,7 @@ export async function checkCustomsConfirmation(hscode: string): Promise<CustomsC
 // ── XML 내보내기 ────────────────────────────────────────────
 
 export function exportXmlUrl(id: number) {
-  return `http://localhost:8000/api/declarations/${id}/export-xml`;
+  return `${API_BASE_URL}/api/declarations/${id}/export-xml`;
 }
 
 export async function uploadInvoice(
@@ -176,4 +178,18 @@ export interface InvoiceUploadResult {
   invoice: object;
   declaration_id: number;
   parsed_data: ParsedInvoicePreview;
+}
+
+// Local OCR prototype: ephemeral, separate from declaration submission.
+export interface PreparationCell { value: string; page: number | null; evidence: string; kind: string }
+export interface PreparationResult {
+  common: Record<string, PreparationCell>;
+  items: Record<string, PreparationCell>[];
+  pages: { number: number; text: string; image: string }[];
+  issues: string[]; columns: string[]; engine: string; elapsed_seconds: number; status: string;
+}
+export async function prepareDocument(file: File, profile: Record<string, string>): Promise<PreparationResult> {
+  const body = new FormData(); body.append('file', file); body.append('profile', JSON.stringify(profile));
+  const { data } = await api.post('/preparation/pdf', body, { timeout: 150000 });
+  return data;
 }

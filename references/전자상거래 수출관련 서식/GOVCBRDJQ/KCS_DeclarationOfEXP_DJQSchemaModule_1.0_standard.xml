@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wco:Declaration
+    xmlns:kcs="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJQSchemaModule:1:0"
+    xmlns:wco="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJQSchemaModule:1:0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJQSchemaModule:1:0 ../../schema4G/kcs/data/standard/KCS_DeclarationOfEXP_DJQSchemaModule_1.0_standard.xsd">
+    <!--신청세관/과-->
+    <wco:DeclarationOfficeID>01001</wco:DeclarationOfficeID>
+    <!--구분-->
+    <wco:FunctionCode>01</wco:FunctionCode>
+    <!--전자상거래수출신고번호-->
+    <wco:ID>99999999</wco:ID>
+    <!--신청일자-->
+    <wco:IssueDateTime>20191108</wco:IssueDateTime>
+    <!--문서형태구분-->
+    <wco:TypeCode>GOVCBRDJP</wco:TypeCode>
+    <!--신청차수-->
+    <wco:VersionID>01</wco:VersionID>
+    <!--신고구분-->
+    <wco:TransactionNatureCode>01</wco:TransactionNatureCode>
+    <!--귀책사유-->
+    <kcs:Reason>01</kcs:Reason>
+    
+    <wco:AdditionalInformation>
+        <!--정정/취하/연장사유-->
+        <wco:Content>연장사유</wco:Content>
+        <!--정정/취하코드-->
+        <wco:StatementCode>01</wco:StatementCode>
+    </wco:AdditionalInformation>
+    
+	<!-- 1..999 -->
+    <wco:Amendment>
+        <!--구분-->
+        <wco:ChangeReasonCode>01</wco:ChangeReasonCode>
+        <!--정정전-->
+        <wco:StatementDescription>정정전</wco:StatementDescription>
+        <!--정정후-->
+        <kcs:AdjustmentDescription>정정후</kcs:AdjustmentDescription>
+		<wco:Pointer>
+			<!--정정항목 란번호-->
+			<wco:SequenceNumeric>1</wco:SequenceNumeric>
+			<!--규격번호-->
+			<wco:DocumentSectionCode>01</wco:DocumentSectionCode>
+			<!--항목번호-->
+			<wco:TagID>01</wco:TagID>
+		</wco:Pointer>
+    </wco:Amendment>
+    
+    <wco:Exporter>
+        <!--수출화주 통관고유부호-->
+        <wco:ID>999999999</wco:ID>
+        <!--수출화주의 상호 또는 성명-->
+        <wco:Name>상호</wco:Name>
+    </wco:Exporter>
+</wco:Declaration>

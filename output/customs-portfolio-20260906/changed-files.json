@@ -1,0 +1,17 @@
+[
+  ".gitignore",
+  "README.md",
+  "backend/app/api/submissions.py",
+  "backend/app/api/declarations.py",
+  "backend/demo_flow.py",
+  "frontend/src/pages/DeclarationEdit.tsx",
+  "backend/app/services/parser/pdf_parser.py",
+  "backend/tests/test_api.py",
+  "backend/tests/fixtures/synthetic-invoice.pdf",
+  "backend/tests/fixtures/synthetic-invoice.xlsx",
+  "backend/tests/fixtures/README.md",
+  "frontend/index.html",
+  "scripts/serve-demo",
+  "docs/portfolio.md",
+  "docs/qa-test-report.md"
+]

@@ -10,6 +10,7 @@ import {
   Button,
   Typography,
   Space,
+  message,
 } from "antd";
 import {
   FileTextOutlined,
@@ -22,24 +23,9 @@ import {
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 
-import { getStats, listDeclarations } from "../api/client";
+import { getStats, listDeclarations, getApiErrorMessage } from "../api/client";
 import type { DeclarationListItem } from "../types";
-
-const STATUS_COLORS: Record<string, string> = {
-  draft: "default",
-  validated: "blue",
-  submitted: "orange",
-  accepted: "green",
-  rejected: "red",
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  draft: "초안",
-  validated: "검증완료",
-  submitted: "제출됨",
-  accepted: "수리",
-  rejected: "반려",
-};
+import { STATUS_COLORS, STATUS_LABELS } from "../constants/status";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -47,8 +33,12 @@ export default function Dashboard() {
   const [recent, setRecent] = useState<DeclarationListItem[]>([]);
 
   useEffect(() => {
-    getStats().then(setStats);
-    listDeclarations(undefined, 1).then((d) => setRecent(d.slice(0, 5)));
+    getStats()
+      .then(setStats)
+      .catch((error: unknown) => message.error(getApiErrorMessage(error, "통계 조회 실패")));
+    listDeclarations(undefined, 1)
+      .then((d) => setRecent(d.slice(0, 5)))
+      .catch((error: unknown) => message.error(getApiErrorMessage(error, "최근 신고서 조회 실패")));
   }, []);
 
   const statCards = [
@@ -91,6 +81,7 @@ export default function Dashboard() {
           수출통관 자동화 대시보드
         </Typography.Title>
         <Space>
+          <Button type="primary" onClick={() => navigate("/preparation")}>PDF 전체 초안 시연</Button>
           <Button icon={<SettingOutlined />} onClick={() => navigate("/settings")}>
             회사 설정
           </Button>

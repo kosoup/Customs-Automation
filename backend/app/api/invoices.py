@@ -58,7 +58,7 @@ async def upload_invoice(
     file: UploadFile = File(...),
     template_name: Optional[str] = Form(None),
     db: AsyncSession = Depends(get_db),
-):
+) -> UploadResponse:
     safe_filename = Path((file.filename or "").replace("\\", "/")).name.strip()
     if not safe_filename:
         raise HTTPException(400, "파일명이 필요합니다")
@@ -86,7 +86,7 @@ async def upload_invoice(
             parsed = ExcelParser().parse(str(save_path), template)
     except Exception as e:
         save_path.unlink(missing_ok=True)
-        raise HTTPException(422, f"파일 파싱 실패: {e}")
+        raise HTTPException(422, f"파일 파싱 실패: {e}") from e
 
     try:
         # 매핑 → 신고서 초안 생성

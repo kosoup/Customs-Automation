@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wco:Declaration
+    xmlns:kcs="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_811SchemaModule:1:0"
+    xmlns:wco="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_811SchemaModule:1:0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_811SchemaModule:1:0 ../../schema4G/kcs/data/standard/KCS_DeclarationOfEXP_811SchemaModule_1.0_standard.xsd">
+    <!--전송구분(9: 원본(최초전송), 35:재전송, 1: 취소전송(기존자료 삭제))-->
+    <wco:FunctionCode>9</wco:FunctionCode>
+    <!--요건신청(접수)번호-->
+    <wco:FunctionalReferenceID>ABCDE14000001</wco:FunctionalReferenceID>
+    <!--요건확인번호-->
+    <wco:ID>000000000000000000</wco:ID>
+    <!--결제금액(통화종류)-->
+    <wco:InvoiceAmount currencyID="KRW">999</wco:InvoiceAmount>
+    <!--통지일시(CCYYMMDDHHMMSS)-->
+    <wco:IssueDateTime>20140506123012</wco:IssueDateTime>
+    <!--총 품목수-->
+    <wco:LoadingListQuantity>3</wco:LoadingListQuantity>
+    <!--문서형태구분-->
+    <wco:TypeCode>GOVCBR811</wco:TypeCode>
+    <!--요건분할차수-->
+    <wco:VersionID>4</wco:VersionID>
+    <!--발급번호수출입구분(01 수출승인서(811), 09 수출검사검역서[811])-->
+    <wco:TransactionNatureCode>01</wco:TransactionNatureCode>
+    <!--비고-->
+    <kcs:Note>비고</kcs:Note>
+    <!--불합격사유-->
+    <kcs:Reason>불합격사유</kcs:Reason>
+    <wco:Authenticator>
+		<!--요건확인 발급기관부호-->
+			<wco:ID>005</wco:ID>
+        <!--요건확인서 발급기관명-->
+        <wco:Name>발급기관명</wco:Name>
+        <wco:Contact>
+            <!--소속기관부호-->
+            <kcs:DepartmentName>001</kcs:DepartmentName>
+        </wco:Contact>
+        <wco:Communication>
+            <!--요건확인서 발급기관 전화번호-->
+            <wco:ID>0225698745</wco:ID>
+        </wco:Communication>
+    </wco:Authenticator>
+    <wco:AdditionalDocument>
+        <!--관련서식명-->
+        <wco:Name>관련서식명</wco:Name>
+        <!--관련법령부호(요건확인대상 관련법령부호,01 약사법,02 마약법,03 대마관리법,04 향 정신성 의약품관리법,05 식품위생법,06 공중위생법,07 검역법 등등)-->
+        <kcs:CriteriaConformanceCode>01</kcs:CriteriaConformanceCode>
+        <!--관련법령명-->
+        <kcs:Description>관련법령명</kcs:Description>
+    </wco:AdditionalDocument>
+    <wco:AdditionalInformation>
+        <!--불합격 조치내역-->
+        <wco:Content>불합격 조치내역</wco:Content>
+        <!--폐기입회여부-->
+        <wco:StatementCode>Y</wco:StatementCode>
+        <!--심사참고사항-->
+        <wco:StatementDescription>심사참고사항</wco:StatementDescription>
+    </wco:AdditionalInformation>
+    <wco:BorderTransportMeans>
+        <!--출항일자(CCYYMMDD)-->
+        <wco:DepartureDateTime>20140506</wco:DepartureDateTime>
+        <!--선기명-->
+        <wco:Name>선기명</wco:Name>
+    </wco:BorderTransportMeans>
+    <wco:Consignment>
+        <wco:Warehouse>
+            <!--장치장부호-->
+            <wco:ID>ABCD1234</wco:ID>
+        </wco:Warehouse>
+    </wco:Consignment>
+    <wco:Control>
+        <!--검사방법-->
+        <kcs:InspectionDescription>검사방법</kcs:InspectionDescription>
+        <wco:ControlResult>
+            <!--합격여부 D : 폐기명령,N : 불합격,X : 검사제외,Y : 합격-->
+            <wco:IdentificationCode>D</wco:IdentificationCode>
+        </wco:ControlResult>
+    </wco:Control>
+    <wco:Exporter>
+        <!--ZZZ:화주 식별번호/KTX:사업자등록번호/KFT:무역업허가번호-->
+        <wco:ID schemeAgencyID="ZZZ">000000000</wco:ID>
+        <wco:ID schemeAgencyID="KTX">000000000</wco:ID>
+        <wco:ID schemeAgencyID="KFT">000000000</wco:ID>
+        <!--화주 상호-->
+        <wco:Name>무한상사</wco:Name>
+        <!--신청인 식별번호 구분부호-->
+        <wco:RoleCode>03</wco:RoleCode>
+        <wco:Address>
+            <!--화주 도로명코드-->
+            <wco:CountrySubDivisionID>10001</wco:CountrySubDivisionID>
+            <!--화주 상세주소-->
+            <wco:Line>상세주소</wco:Line>
+            <!--화주 우편번호-->
+            <wco:PostcodeID>55555</wco:PostcodeID>
+            <!--화주 건물관리번호-->
+            <kcs:BuildingNumber>10021</kcs:BuildingNumber>
+            <!--화주 주소-->
+            <kcs:Description>주소</kcs:Description>
+        </wco:Address>
+        <wco:Contact>
+            <!--화주 성명-->
+            <wco:Name>김화주</wco:Name>
+        </wco:Contact>
+    </wco:Exporter>
+    
+    <!--1..9999 반복-->
+    <wco:GoodsShipment>
+        <wco:GovernmentAgencyGoodsItem>
+            <!--품목일련번호-->
+            <wco:SequenceNumeric>123</wco:SequenceNumeric>
+            <wco:AdditionalInformation>
+                <!--전략물자대상여부-->
+                <wco:StatementCode>Y</wco:StatementCode>
+                <!--소모품/비소모품구분-->
+                <wco:StatementTypeCode>Y</wco:StatementTypeCode>
+            </wco:AdditionalInformation>
+            <wco:Commodity>
+                <!--수량(단위)-->
+                <wco:CountQuantity kcsUnitCode="">99</wco:CountQuantity>
+                <!--용도명-->
+                <wco:IntendedUse>용도명</wco:IntendedUse>
+                <!--용도코드-->
+                <wco:IntendedUseCode>01</wco:IntendedUseCode>
+                <!--품목식별부호-->
+                <wco:ID>AAAA</wco:ID>
+                <!--품목금액(통화종류)-->
+                <wco:ValueAmount currencyID="KRW">999</wco:ValueAmount>
+                <!--단가-->
+                <kcs:UnitPriceAmount>999</kcs:UnitPriceAmount>
+                <wco:Classification>
+                    <!--HSK부호-->
+                    <wco:ID>0000000000</wco:ID>
+                </wco:Classification>
+                <wco:DetailedCommodity>
+                    <!--모델규격명-->
+                    <wco:CargoDescription>DetailedCommodity</wco:CargoDescription>
+                    <wco:Exporter>
+                        <!--실반출자 주민번호(KAS)/여권번호(MFA)-->
+                        <wco:ID schemeAgencyID="KAS">0000000000000</wco:ID>
+                        <!--실반출자 주민번호(KAS)/여권번호(MFA)-->
+                        <wco:ID schemeAgencyID="MFA">M123545884</wco:ID>
+                        <!--실반출자 성명-->
+                        <wco:Name>박명</wco:Name>
+                        <!--실반출자구분수( 1: 재반입조건 품목, 2: 관심요망 대상품목실반출자구분)-->
+                        <wco:RoleCode>1</wco:RoleCode>
+                        <wco:Contact>
+                            <!--실반출자 생년월일-->
+                            <kcs:BirthDate>19791212</kcs:BirthDate>
+                        </wco:Contact>
+                    </wco:Exporter>
+                </wco:DetailedCommodity>
+                <wco:GoodsMeasure>
+                    <!--순중량(단위)-->
+                    <wco:NetNetWeightMeasure kcsUnitCode="">999</wco:NetNetWeightMeasure>
+                </wco:GoodsMeasure>
+            </wco:Commodity>
+            <wco:Origin>
+                <!--원산지부호-->
+                <wco:CountryCode>KR</wco:CountryCode>
+            </wco:Origin>
+            <wco:Packaging>
+                <!--포장개수-->
+                <wco:QuantityQuantity>99</wco:QuantityQuantity>
+                <!--포장개수부호-->
+                <wco:TypeCode>CT</wco:TypeCode>
+            </wco:Packaging>
+        </wco:GovernmentAgencyGoodsItem>
+    </wco:GoodsShipment>
+    <wco:Importer>
+        <!--해외거래처 상호-->
+        <wco:Name>해투상사</wco:Name>
+        <wco:Address>
+            <!--해외거래처 국가부호-->
+            <wco:CountryCode>KR</wco:CountryCode>
+            <!--해외거래처 주소-->
+            <wco:Line>서울시 강남구 도곡동</wco:Line>
+        </wco:Address>
+        <wco:Contact>
+            <!--해외거래처 대표자성명-->
+            <kcs:RepresentativeName>외국인</kcs:RepresentativeName>
+        </wco:Contact>
+    </wco:Importer>
+    
+    <!--0..5 반복-->
+    <wco:Manufacturer>
+        <!--HSK부호-->
+        <wco:ID>0000000000</wco:ID>
+        <!--제조자 상호-->
+        <wco:Name>제조상사</wco:Name>
+        <!--제조자 일련번호-->
+        <kcs:SequenceNumeric>1</kcs:SequenceNumeric>
+        <wco:Address>
+            <!--제조자 도로명코드-->
+            <wco:CountrySubDivisionID>01000</wco:CountrySubDivisionID>
+            <!--제조자 상세주소-->
+            <wco:Line>상세주소</wco:Line>
+            <!--제조자 우편번호-->
+            <wco:PostcodeID>51223</wco:PostcodeID>
+            <!--제조자 건물관리번호-->
+            <kcs:BuildingNumber>22010</kcs:BuildingNumber>
+            <!--제조자 주소-->
+            <kcs:Description>주소</kcs:Description>
+        </wco:Address>
+    </wco:Manufacturer>
+    <wco:LoadingLocation>
+        <!--선적일자(CCYYMMDD)-->
+        <wco:LoadingDateTime>20140506</wco:LoadingDateTime>
+        <!--선적항명-->
+        <wco:Name>코알라호</wco:Name>
+    </wco:LoadingLocation>
+    <wco:Status>
+        <!--승인조건-->
+        <kcs:Description>승인조건</kcs:Description>
+    </wco:Status>
+    <wco:Submitter>
+        <!--:ZZZ:신청인 식별번호/KTX:사업자등록번호/KFT:무역업허가번호/380:관세사부호-->
+        <wco:ID schemeAgencyID="ZZZ">0000000000</wco:ID>
+        <wco:ID schemeAgencyID="KTX">0000000000</wco:ID>
+        <wco:ID schemeAgencyID="KFT">K1234</wco:ID>
+        <wco:ID schemeAgencyID="380">K1234</wco:ID>
+        <!--신청인 상호-->
+        <wco:Name>무한상</wco:Name>
+        <!--신청인 식별번호 구분부호-->
+        <wco:RoleCode>03</wco:RoleCode>
+    </wco:Submitter>
+	<wco:TradeTerms>
+		<!--인도조건-->
+		<wco:ConditionCode>AAA</wco:ConditionCode>
+	</wco:TradeTerms>
+    <wco:LPCO>
+        <!--요건확인신청일자(CCYYMMDD)-->
+        <wco:AcceptanceDateTime>20140506</wco:AcceptanceDateTime>
+        <!--요건확인서만료일자(CCYYMMDD)-->
+        <wco:LPCOExpirationDateTime>20140506</wco:LPCOExpirationDateTime>
+        <!--요건확인서발급일자(CCYYMMDD)-->
+        <wco:IssueDateTime>20140506</wco:IssueDateTime>
+        <!--요건확인서적용횟수-->
+        <wco:SequenceNumeric>3</wco:SequenceNumeric>
+    </wco:LPCO>
+</wco:Declaration>

@@ -19,7 +19,6 @@ import {
   SaveOutlined,
   CheckCircleOutlined,
   ArrowLeftOutlined,
-  SendOutlined,
   DownloadOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
@@ -30,7 +29,6 @@ import {
   createDeclaration,
   updateDeclaration,
   validateDeclaration,
-  submitDeclaration,
   trackDeclaration,
   exportFileUrl,
   exportXmlUrl,
@@ -38,22 +36,7 @@ import {
 } from "../api/client";
 import CargoItemTable from "../components/CargoItemTable";
 import type { DeclarationItem, ValidationError } from "../types";
-
-const STATUS_COLORS: Record<string, string> = {
-  draft: "default",
-  validated: "blue",
-  submitted: "orange",
-  accepted: "green",
-  rejected: "red",
-};
-
-const STATUS_LABELS: Record<string, string> = {
-  draft: "초안",
-  validated: "검증완료",
-  submitted: "제출됨",
-  accepted: "수리",
-  rejected: "반려",
-};
+import { STATUS_COLORS, STATUS_LABELS } from "../constants/status";
 
 const INCOTERMS = [
   "EXW", "FCA", "FAS", "FOB", "CFR", "CIF", "CPT", "CIP", "DAP", "DPU", "DDP",
@@ -67,21 +50,32 @@ export default function DeclarationEdit() {
   const [status, setStatus] = useState("draft");
   const [errors, setErrors] = useState<ValidationError[]>([]);
   const [loading, setLoading] = useState(false);
+  const [dirty, setDirty] = useState(false);
   const isNew = !id;
   const readOnly = !["draft", "validated"].includes(status);
+  const canExport = !isNew && !dirty && !loading && ["validated", "submitted", "accepted"].includes(status);
 
   useEffect(() => {
-    if (id) {
-      getDeclaration(Number(id)).then((decl) => {
+    if (!id) return;
+    let cancelled = false;
+    getDeclaration(Number(id))
+      .then((decl) => {
+        if (cancelled) return;
         setStatus(decl.status);
+        setDirty(false);
         setItems(decl.items);
         form.setFieldsValue({
           ...decl,
           shipping_date: decl.shipping_date ? dayjs(decl.shipping_date) : null,
           invoice_date: decl.invoice_date ? dayjs(decl.invoice_date) : null,
         });
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) message.error(getApiErrorMessage(error, "신고서 조회 실패"));
       });
-    }
+    return () => {
+      cancelled = true;
+    };
   }, [id, form]);
 
   const handleSave = async () => {
@@ -103,6 +97,7 @@ export default function DeclarationEdit() {
         await updateDeclaration(Number(id), body);
         message.success("수정되었습니다");
         setStatus("draft");
+        setDirty(false);
         setErrors([]);
       }
     } catch (error: unknown) {
@@ -113,7 +108,7 @@ export default function DeclarationEdit() {
   };
 
   const handleValidate = async () => {
-    if (isNew) return;
+    if (isNew || dirty) return;
     setLoading(true);
     try {
       const result = await validateDeclaration(Number(id));
@@ -124,22 +119,8 @@ export default function DeclarationEdit() {
       } else {
         message.warning(`${result.errors.length}건의 오류가 있습니다`);
       }
-    } catch {
-      message.error("검증 실패");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSubmit = async () => {
-    if (isNew) return;
-    setLoading(true);
-    try {
-      await submitDeclaration(Number(id), "file_export");
-      setStatus("submitted");
-      message.success("제출(file_export) 완료. 파일을 다운로드하여 UNI-PASS에 업로드하세요.");
     } catch (error: unknown) {
-      message.error(getApiErrorMessage(error, "제출 실패"));
+      message.error(getApiErrorMessage(error, "검증 실패"));
     } finally {
       setLoading(false);
     }
@@ -157,8 +138,8 @@ export default function DeclarationEdit() {
           `상태: ${result.declaration_status || "-"} / 수리번호: ${result.accept_number || "-"}`
         );
       }
-    } catch {
-      message.error("조회 실패");
+    } catch (error: unknown) {
+      message.error(getApiErrorMessage(error, "조회 실패"));
     } finally {
       setLoading(false);
     }
@@ -193,7 +174,10 @@ export default function DeclarationEdit() {
         />
       )}
 
-      <Form form={form} layout="vertical" disabled={readOnly}>
+      {dirty && (
+        <Alert type="info" showIcon message="변경한 내용을 저장한 뒤 다시 검증하세요." style={{ marginBottom: 16 }} />
+      )}
+      <Form form={form} layout="vertical" disabled={readOnly} onValuesChange={() => setDirty(true)}>
         {/* 신고인/수출자 */}
         <Card title="신고인 / 수출자" size="small" style={{ marginBottom: 16 }}>
           <Row gutter={16}>
@@ -347,7 +331,7 @@ export default function DeclarationEdit() {
         <Card title="품목 상세" size="small" style={{ marginBottom: 16 }}>
           <CargoItemTable
             items={items}
-            onChange={setItems}
+            onChange={(nextItems) => { setItems(nextItems); setDirty(true); }}
             readOnly={readOnly}
           />
         </Card>
@@ -367,6 +351,7 @@ export default function DeclarationEdit() {
                 <Button
                   icon={<CheckCircleOutlined />}
                   onClick={handleValidate}
+                  disabled={dirty}
                   loading={loading}
                 >
                   검증
@@ -374,21 +359,13 @@ export default function DeclarationEdit() {
               )}
             </>
           )}
-          {!isNew && status === "validated" && (
-            <Button
-              type="primary"
-              icon={<SendOutlined />}
-              onClick={handleSubmit}
-              loading={loading}
-            >
-              제출 (파일 내보내기)
-            </Button>
-          )}
           {!isNew && (
             <Button
               icon={<DownloadOutlined />}
-              href={exportFileUrl(Number(id))}
+              disabled={!canExport}
+              href={canExport ? exportFileUrl(Number(id)) : undefined}
               target="_blank"
+              rel="noopener noreferrer"
             >
               Excel 다운로드
             </Button>
@@ -396,8 +373,10 @@ export default function DeclarationEdit() {
           {!isNew && (
             <Button
               icon={<DownloadOutlined />}
-              href={exportXmlUrl(Number(id))}
+              disabled={!canExport}
+              href={canExport ? exportXmlUrl(Number(id)) : undefined}
               target="_blank"
+              rel="noopener noreferrer"
             >
               XML 다운로드 (GOVCBR830)
             </Button>

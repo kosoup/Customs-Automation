@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Module: KCS_DeclarationOfEXP_DJR
+Name: 전자상거래 수출 이행완료 신고서
+Agency: Korea Customs Service
+KCSBusinessType : EXP
+AgencyAssignedCustomizedDocumentName : GOVCBR_DJR
+Version: 1.0 Rev. 0
+Last change: 2019.11.08
+Author : yh.kim
+
+Change :
+ 
+ Copyright (C) Korea Customs Service (2014). All Rights Reserved. 
+-->
+<xsd:schema xmlns="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJRSchemaModule:1:0" xmlns:ccts="urn:un:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:2" xmlns:ds="urn:wco:datamodel:WCO:DS:1" xmlns:kcsds="urn:kr:gov:kcs:data:standard:KCSDS:1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJRSchemaModule:1:0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:import namespace="urn:wco:datamodel:WCO:DS:1" schemaLocation="../../../wco/common/DS_1p0.xsd"/>
+	<xsd:import namespace="urn:kr:gov:kcs:data:standard:KCSDS:1" schemaLocation="../../common/KCSDS_1p0.xsd"/>
+	<xsd:element name="Declaration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<!--전송구분-->
+				<xsd:element name="FunctionCode" type="ds:DeclarationFunctionCodeType"/>
+				<!--신고번호-->
+				<xsd:element name="ID" type="ds:DeclarationIdentificationIDType"/>
+				<!--문서형태구분-->
+				<xsd:element name="TypeCode" type="ds:DeclarationTypeCodeType"/>
+				<!--신고구분-->
+				<xsd:element name="TransactionNatureCode" type="ds:DeclarationTransactionNatureCodeType"/>
+				<xsd:element name="AdditionalDocument" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--주문번호-->
+							<xsd:element name="ID" type="ds:AdditionalDocumentIdentificationIDType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="BorderTransportMeans">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--출항일시-->
+							<xsd:element name="DepartureDateTime" type="ds:BorderTransportMeansDepartureDateTimeType"/>
+							<!--선박항공편명-->
+							<xsd:element name="ScheduledConveyanceID" type="ds:BorderTransportMeansScheduledConveyanceIDType"/>
+							<!--해상/항공 구분-->
+							<xsd:element name="TypeCode" type="ds:BorderTransportMeansTypeCodeType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Exporter">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--수출화주 신고인 부호-->
+							<xsd:element name="ID" type="ds:ExporterIdentificationIDType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="GoodsShipment">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="AdditionalDocument">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--배송신고번호-->
+										<xsd:element name="ID" type="ds:AdditionalDocumentIdentificationIDType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="Destination">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--목적국-->
+										<xsd:element name="CountryCode" type="ds:DestinationCountryCodeType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="GovernmentAgencyGoodsItem">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Commodity">
+											<xsd:complexType>
+												<xsd:sequence>
+													<!--이행수량-->
+													<xsd:element name="CountQuantity" type="ds:CommodityCountQuantityType"/>
+													<!--이행중량-->
+													<xsd:element name="SizeMeasure" type="ds:CommoditySizeMeasureType"/>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="PreviousDocument" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--전자상거래수출신고번호-->
+							<xsd:element name="ID" type="ds:PreviousDocumentIdentificationIDType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wco:Declaration xmlns:wco="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DKJSchemaModule:1:0" xmlns:kcs="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DKJSchemaModule:1:0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DKJSchemaModule:1:0 ../../schema4G/kcs/data/standard/KCS_DeclarationOfEXP_DKJSchemaModule_1.0_standard.xsd">
+	<!--신고세관/과-->
+	<wco:DeclarationOfficeID>01020</wco:DeclarationOfficeID>
+	<!--수출신고번호-->
+	<wco:ID>000000000000000</wco:ID>
+	<!--신청일자-->
+	<wco:IssueDateTime>20140506</wco:IssueDateTime>
+	<!--문서형태구분-->
+	<wco:TypeCode>GOVCBRDKJ</wco:TypeCode>
+	<!--신청차수-->
+	<wco:VersionID>3</wco:VersionID>
+	<!--구분-->
+	<wco:TransactionNatureCode>B</wco:TransactionNatureCode>
+	<!--귀책사유-->
+	<kcs:Reason>귀책사유</kcs:Reason>
+	<wco:AdditionalInformation>
+		<!--취하사유코드-->
+		<wco:StatementCode>01</wco:StatementCode>
+		<!--취하사유-->
+		<wco:StatementDescription>취하사유</wco:StatementDescription>
+	</wco:AdditionalInformation>
+	<wco:Exporter>
+		<!--수출화주 통관고유부호-->
+		<wco:ID>00000000000000</wco:ID>
+		<!--수출화주 상호 또는 성명-->
+		<wco:Name>김수출</wco:Name>
+	</wco:Exporter>
+	<wco:Submitter>
+		<!--신고인 부호-->
+		<wco:ID>00001</wco:ID>
+	</wco:Submitter>
+</wco:Declaration>

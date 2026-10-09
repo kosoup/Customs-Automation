@@ -13,14 +13,16 @@ import {
 } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 
-import { getSettings, updateSettings } from "../api/client";
+import { getSettings, updateSettings, getApiErrorMessage } from "../api/client";
 
 export default function Settings() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
 
   useEffect(() => {
-    getSettings().then((data) => form.setFieldsValue(data));
+    getSettings()
+      .then((data) => form.setFieldsValue(data))
+      .catch((error: unknown) => message.error(getApiErrorMessage(error, "설정 조회 실패")));
   }, [form]);
 
   async function handleSave() {
@@ -28,9 +30,8 @@ export default function Settings() {
       const values = await form.validateFields();
       await updateSettings(values);
       message.success("저장되었습니다");
-    } catch (e: unknown) {
-      const err = e as { response?: { data?: { detail?: string } } };
-      message.error(err.response?.data?.detail || "저장 중 오류가 발생했습니다");
+    } catch (error: unknown) {
+      message.error(getApiErrorMessage(error, "저장 중 오류가 발생했습니다"));
     }
   }
 

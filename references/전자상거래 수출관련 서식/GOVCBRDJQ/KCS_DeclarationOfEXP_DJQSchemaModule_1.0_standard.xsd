@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Module: KCS_DeclarationOfEXP_DJQ
+Name: 전자상거래 수출신고 정정취하 신청서
+Agency: Korea Customs Service
+KCSBusinessType : EXP
+AgencyAssignedCustomizedDocumentName : GOVCBR_DJQ
+Version: 1.0 Rev. 0
+Last change: 2019.11.08
+Author : yh.kim
+
+Change :
+ 
+ Copyright (C) Korea Customs Service (2014). All Rights Reserved. 
+-->
+<xsd:schema xmlns="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJQSchemaModule:1:0" xmlns:ccts="urn:un:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:2" xmlns:ds="urn:wco:datamodel:WCO:DS:1" xmlns:kcsds="urn:kr:gov:kcs:data:standard:KCSDS:1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJQSchemaModule:1:0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:import namespace="urn:wco:datamodel:WCO:DS:1" schemaLocation="../../../wco/common/DS_1p0.xsd"/>
+	<xsd:import namespace="urn:kr:gov:kcs:data:standard:KCSDS:1" schemaLocation="../../common/KCSDS_1p0.xsd"/>
+	<xsd:element name="Declaration">
+		<xsd:complexType>
+			<xsd:sequence>
+				<!--신청세관/과-->
+				<xsd:element name="DeclarationOfficeID" type="ds:DeclarationDeclarationOfficeIDType"/>
+				<!--구분-->
+				<xsd:element name="FunctionCode" type="ds:DeclarationFunctionCodeType"/>
+				<!--전자상거래수출신고번호-->
+				<xsd:element name="ID" type="ds:DeclarationIdentificationIDType"/>
+				<!--신청일자-->
+				<xsd:element name="IssueDateTime" type="ds:DeclarationIssueDateTimeType"/>
+				<!--문서형태구분-->
+				<xsd:element name="TypeCode" type="ds:DeclarationTypeCodeType"/>
+				<!--신청차수-->
+				<xsd:element name="VersionID" type="ds:DeclarationVersionIDType"/>
+				<!--신고구분-->
+				<xsd:element name="TransactionNatureCode" type="ds:DeclarationTransactionNatureCodeType"/>
+				<!--귀책사유-->
+				<xsd:element name="Reason" type="kcsds:DeclarationReasonTextType"/>
+				<xsd:element name="AdditionalInformation" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--정정/취하/연장사유-->
+							<xsd:element name="Content" type="ds:AdditionalInformationContentTextType" minOccurs="0"/>
+							<!--정정/취하코드-->
+							<xsd:element name="StatementCode" type="ds:AdditionalInformationStatementCodeType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Amendment" minOccurs="0" maxOccurs="999">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--구분-->
+							<xsd:element name="ChangeReasonCode" type="ds:AmendmentChangeReasonCodeType" minOccurs="0"/>
+							<!--정정전-->
+							<xsd:element name="StatementDescription" type="ds:AmendmentStatementDescriptionTextType" minOccurs="0"/>
+							<!--정정후-->
+							<xsd:element name="AdjustmentDescription" type="kcsds:AmendmentAdjustmentDescriptionTextType" minOccurs="0"/>
+							<xsd:element name="Pointer">
+								<xsd:complexType>
+									<xsd:sequence>
+										<!--정정항목 란번호-->
+										<xsd:element name="SequenceNumeric" type="ds:PointerSequenceNumericType"/>
+										<!--규격번호-->
+										<xsd:element name="DocumentSectionCode" type="ds:PointerDocumentSectionCodeType"/>
+										<!--항목번호-->
+										<xsd:element name="TagID" type="ds:PointerTagIDType"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Exporter">
+					<xsd:complexType>
+						<xsd:sequence>
+							<!--수출화주 통관고유부호-->
+							<xsd:element name="ID" type="ds:ExporterIdentificationIDType" minOccurs="0"/>
+							<!--수출화주상호-->
+							<xsd:element name="Name" type="ds:ExporterNameTextType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

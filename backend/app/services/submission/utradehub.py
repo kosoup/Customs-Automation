@@ -9,14 +9,18 @@ uTradeHub (KTNET) API 연동.
 
 uTradeHub EDI는 XML 메시지 기반이며, 아래는 수출신고서(CUSEXPDEC) 포맷 기준이다.
 """
+import logging
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
-from typing import Optional
 
 import httpx
+from defusedxml import ElementTree as DET
+from defusedxml.common import DefusedXmlException
 
 from app.config import settings
 from app.models.declaration import Declaration
+
+logger = logging.getLogger(__name__)
 
 UTRADEHUB_BASE_URL = "https://edi.utradehub.or.kr"
 UTRADEHUB_SUBMIT_PATH = "/edi/submit"
@@ -96,20 +100,31 @@ async def submit(declaration: Declaration) -> dict:
 
     xml_body = _build_xml(declaration, sender_id, receiver_id)
 
-    async with httpx.AsyncClient(timeout=30) as client:
-        resp = await client.post(
-            f"{UTRADEHUB_BASE_URL}{UTRADEHUB_SUBMIT_PATH}",
-            content=xml_body,
-            headers={
-                "Content-Type": "application/xml; charset=utf-8",
-                "Authorization": f"Bearer {api_key}",
-            },
-        )
-        resp.raise_for_status()
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(
+                f"{UTRADEHUB_BASE_URL}{UTRADEHUB_SUBMIT_PATH}",
+                content=xml_body,
+                headers={
+                    "Content-Type": "application/xml; charset=utf-8",
+                    "Authorization": f"Bearer {api_key}",
+                },
+            )
+            resp.raise_for_status()
+    except httpx.HTTPError as e:
+        logger.warning("uTradeHub 제출 요청 실패 (declaration_id=%s)", declaration.id, exc_info=True)
+        raise RuntimeError("uTradeHub 제출 요청이 실패했습니다.") from e
 
     # 응답 XML 파싱 (접수번호 추출)
-    root = ET.fromstring(resp.text)
-    ref_el = root.find(".//RECEIPT_NO") or root.find(".//REF_NO")
+    try:
+        root = DET.fromstring(resp.text)
+    except (ET.ParseError, DefusedXmlException) as e:
+        logger.warning("uTradeHub 응답 XML 파싱 실패 (declaration_id=%s)", declaration.id, exc_info=True)
+        raise RuntimeError("uTradeHub 응답 XML 파싱에 실패했습니다.") from e
+
+    ref_el = root.find(".//RECEIPT_NO")
+    if ref_el is None:
+        ref_el = root.find(".//REF_NO")
     tracking = ref_el.text if ref_el is not None else None
 
     return {

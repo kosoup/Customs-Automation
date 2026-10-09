@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wco:Declaration xmlns:wco="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJPSchemaModule:1:0" xmlns:kcs="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJPSchemaModule:1:0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJPSchemaModule:1:0 ../../schema4G/kcs/data/standard/KCS_DeclarationOfEXP_DJPSchemaModule_1.0_standard.xsd">
+	<!--신고세관/과-->
+	<wco:DeclarationOfficeID>01001</wco:DeclarationOfficeID>
+	<!--총 란수-->
+	<wco:GoodsItemQuantity>999</wco:GoodsItemQuantity>
+	<!--전자상거래수출신고번호-->
+	<wco:ID>99999999</wco:ID>
+	<!--총신고가격(FOB)-->
+	<wco:InvoiceAmount>999999999</wco:InvoiceAmount>
+	<!--신고일자-->
+	<wco:IssueDateTime>20191108</wco:IssueDateTime>
+	<!--총중량합계-->
+	<wco:TotalGrossMassMeasure>999999999</wco:TotalGrossMassMeasure>
+	<!--총수량-->
+	<wco:TotalPackageQuantity>999999999</wco:TotalPackageQuantity>
+	<!--문서형태구분-->
+	<wco:TypeCode>GOVCBRDJP</wco:TypeCode>
+	<!--거래구분-->
+	<wco:TransactionNatureCode>01</wco:TransactionNatureCode>
+	<wco:AdditionalDocument>
+		<!--총조정금액-->
+		<wco:AmountAmount>9999</wco:AmountAmount>
+		<!--주문번호-->
+		<wco:ID>A123456</wco:ID>
+	</wco:AdditionalDocument>
+	<wco:AdditionalInformation>
+		<!--웹페이지 주소/URL-->
+		<wco:Content>신고인 기재란</wco:Content>
+		<!--신고인 사서함부호-->
+		<wco:StatementCode>VC000000000001</wco:StatementCode>
+		<!--신고인 기재란-->
+		<wco:StatementDescription>신고인 기재란</wco:StatementDescription>
+	</wco:AdditionalInformation>
+	<wco:Agent>
+		<!--수출대행자 통관고유부호(380)-->
+		<wco:ID schemeAgencyID="380">999999999999999</wco:ID>
+		<!--수출대행자사업장일련번호(KTS)-->
+		<wco:ID schemeAgencyID="KTS">999999999999999</wco:ID>
+		<!--수출대행자 상호-->
+		<wco:Name>상호</wco:Name>
+	</wco:Agent>
+	<wco:BorderTransportMeans>
+		<!--해상/항공 구분-->
+		<wco:TypeCode>01</wco:TypeCode>
+	</wco:BorderTransportMeans>
+	<wco:CurrencyExchange>
+		<!--환율-->
+		<wco:RateNumeric>999999</wco:RateNumeric>
+	</wco:CurrencyExchange>
+	<wco:CustomsProcedure>
+		<!--신고구분-->
+		<kcs:ProcessTypeCode>01</kcs:ProcessTypeCode>
+	</wco:CustomsProcedure>
+	<wco:Consignment>
+		<wco:ConsignmentItem>
+			<wco:Commodity>
+				<!--결제금액(통화단위)-->
+				<wco:ValueAmount currencyID="KRW">999999999</wco:ValueAmount>
+			</wco:Commodity>
+		</wco:ConsignmentItem>
+	</wco:Consignment>
+	<wco:Declarant>
+		<!--신고인 부호-->
+		<wco:ID>99999999999999</wco:ID>
+		<!--신고인 상호-->
+		<wco:Name>상호</wco:Name>
+	</wco:Declarant>
+	<wco:Exporter>
+		<!--수출화주의사업자등록번호(ZZZ)-->
+		<wco:ID schemeAgencyID="ZZZ">99999999</wco:ID>
+		<!--수출화주통관고유부호(380)-->
+		<wco:ID schemeAgencyID="380">99999999</wco:ID>
+		<!--수출화주사업장일련번호(KTS)-->
+		<wco:ID schemeAgencyID="KTS">99999999</wco:ID>
+		<!--수출화주상호-->
+		<wco:Name>상호</wco:Name>
+		<!--사업자등록번호구분부호-->
+		<wco:RoleCode>01</wco:RoleCode>
+		<wco:Address>
+			<!--수출화주도로명코드-->
+			<wco:CountrySubDivisionID>101010</wco:CountrySubDivisionID>
+			<!--수출화주상세주소-->
+			<wco:Line>수출화주상세주소</wco:Line>
+			<!-- 수출화주우편번호-->
+			<wco:PostcodeID>99999</wco:PostcodeID>
+			<!--수출화주건물관리번호-->
+			<kcs:BuildingNumber>020120</kcs:BuildingNumber>
+			<!--수출화주주소-->
+			<kcs:Description>수출화주 주소</kcs:Description>
+		</wco:Address>
+		<wco:Contact>
+			<!--수출화주대표자명-->
+			<kcs:RepresentativeName>대표자명</kcs:RepresentativeName>
+		</wco:Contact>
+	</wco:Exporter>
+	<wco:Express>
+		<!--특송업체부호-->
+		<kcs:ID>123456</kcs:ID>
+	</wco:Express>
+	<wco:GoodsShipment>
+		<wco:Buyer>
+			<!--구매자 상호-->
+			<wco:Name>구매자</wco:Name>
+		</wco:Buyer>
+		<wco:AdditionalDocument>
+			<!--배송번호-->
+			<wco:ID>999999999</wco:ID>
+		</wco:AdditionalDocument>
+		<wco:Consignment>
+			<wco:GoodsLocation>
+				<!--물품소재지 부호-->
+				<wco:ID>04377</wco:ID>
+				<wco:Address>
+					<!--물품소재지 주소-->
+					<kcs:Description>서울시 용산구 한강대로 23길 55</kcs:Description>
+				</wco:Address>
+			</wco:GoodsLocation>
+		</wco:Consignment>
+		<wco:CustomsValuation>
+			<!--운임-->
+			<wco:FreightChargeAmount>9999999</wco:FreightChargeAmount>
+		</wco:CustomsValuation>
+		<wco:Destination>
+			<!--목적국-->
+			<wco:CountryCode>KOR</wco:CountryCode>
+		</wco:Destination>
+		<!--1..999 반복-->
+		<wco:GovernmentAgencyGoodsItem>
+			<!--신고금액-->
+			<wco:CustomsValueAmount>99999</wco:CustomsValueAmount>
+			<!--란번호-->
+			<wco:SequenceNumeric>001</wco:SequenceNumeric>
+			<wco:AdditionalInformation>
+				<!--수출자구분-->
+				<wco:StatementCode>C</wco:StatementCode>
+			</wco:AdditionalInformation>
+			<wco:Commodity>
+				<!--수량-->
+				<wco:CountQuantity>999999999</wco:CountQuantity>
+				<!--품명-->
+				<wco:Description>품명</wco:Description>
+				<!--조정금액 -->
+				<wco:ValueAmount>999999999</wco:ValueAmount>
+				<wco:Classification>
+					<!--세번부호(품목번호,10단위)-->
+					<wco:ID>123456</wco:ID>
+				</wco:Classification>
+				<!--0..99 반복-->
+				<wco:DetailedCommodity>
+					<!--규격번호-->
+					<wco:SequenceNumeric>50</wco:SequenceNumeric>
+					<!--모델,규격-->
+					<wco:CargoDescription>모델 및 규격</wco:CargoDescription>
+					<!--수량-->
+					<wco:CountQuantity>999999999</wco:CountQuantity>
+					<!--단가-->
+					<kcs:UnitPriceAmount>999999999</kcs:UnitPriceAmount>
+					<!--금액-->
+					<kcs:ValueAmount>999999999</kcs:ValueAmount>
+				</wco:DetailedCommodity>
+			</wco:Commodity>
+			<wco:DrawBack>
+				<!--환급신청인-->
+				<kcs:RoleCode>01</kcs:RoleCode>
+				<!--자동간이정액환급-->
+				<kcs:ApplicationTypeCode>AD</kcs:ApplicationTypeCode>
+			</wco:DrawBack>
+			<wco:GoodsMeasure>
+				<!--순중량-->
+				<wco:NetNetWeightMeasure>99999</wco:NetNetWeightMeasure>
+			</wco:GoodsMeasure>
+			<wco:Manufacturer>
+				<!--제조자 사업자등록번호-->
+				<wco:ID schemeAgencyID="ZZZ">9999999999999</wco:ID>
+				<!--제조자사업장일련번호-->
+				<wco:ID schemeAgencyID="KTS">99999</wco:ID>
+				<!--제조자 통관고유부호-->
+				<wco:ID schemeAgencyID="380">999999999999999</wco:ID>
+				<!--제조자 상호-->
+				<wco:Name>상호</wco:Name>
+			</wco:Manufacturer>
+		</wco:GovernmentAgencyGoodsItem>
+		<wco:TradeTerms>
+			<!--인도조건-->
+			<wco:ConditionCode>DAP</wco:ConditionCode>
+			<!--결제방법-->
+			<kcs:SettlementConditionCode>01</kcs:SettlementConditionCode>
+		</wco:TradeTerms>
+		<wco:Warehouse>
+			<!--장치장소명-->
+			<wco:Name>HDC신라면세점</wco:Name>
+		</wco:Warehouse>
+	</wco:GoodsShipment>
+	<wco:LoadingLocation>
+		<!--적재항-->
+		<wco:ID>KRPUS</wco:ID>
+	</wco:LoadingLocation>
+	<wco:Submitter>
+		<!--제출자 사업자등록번호-->
+		<wco:ID>999999999</wco:ID>
+		<!--제출자 상호-->
+		<wco:Name>제출자 상호</wco:Name>
+		<!--제출자구분부호-->
+		<wco:RoleCode>01</wco:RoleCode>
+	</wco:Submitter>
+</wco:Declaration>

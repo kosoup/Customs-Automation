@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wco:Declaration xmlns:kcs="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_5ASSchemaModule:1:0" xmlns:wco="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_5ASSchemaModule:1:0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_5ASSchemaModule:1:0 ../../schema4G/kcs/data/standard/KCS_DeclarationOfEXP_5ASSchemaModule_1.0_standard.xsd">
+	<!--확정일자-->
+	<wco:AcceptanceDateTime>20201209</wco:AcceptanceDateTime>
+	<!--신고세관/과-->
+	<wco:DeclarationOfficeID>01020</wco:DeclarationOfficeID>
+	<!--수출신고번호-->
+	<wco:ID>000000000000000</wco:ID>
+	<!--신청일자(CCYYMMDD)-->
+	<wco:IssueDateTime>20140506</wco:IssueDateTime>
+	<!--문서형태구분-->
+	<wco:TypeCode>GOVCBR5AS</wco:TypeCode>
+	<!--신청차수-->
+	<wco:VersionID>3</wco:VersionID>
+	<!--구분-->
+	<wco:TransactionNatureCode>A</wco:TransactionNatureCode>
+	<!--귀책사유-->
+	<kcs:Reason>귀책사유</kcs:Reason>
+	<wco:AdditionalInformation>
+		<!--정정코드-->
+		<wco:StatementCode>01</wco:StatementCode>
+		<!--정정/연장사유-->
+		<wco:StatementDescription>정정/연장사유</wco:StatementDescription>
+	</wco:AdditionalInformation>
+	<!--0..9999 반복-->
+	<wco:Consignment>
+		<wco:AdditionalDocument>
+			<!--법령일련번호-->
+			<kcs:CriteriaConformanceID>01</kcs:CriteriaConformanceID>
+		</wco:AdditionalDocument>
+		<wco:Amendment>
+			<!--구분(01:란추가, 02:란삭제, 03:란정정)-->
+			<wco:ChangeReasonCode>01</wco:ChangeReasonCode>
+			<!--정정전-->
+			<wco:StatementDescription>정정전</wco:StatementDescription>
+			<!--정정후-->
+			<kcs:AdjustmentDescription>정정후</kcs:AdjustmentDescription>
+			<wco:Pointer>
+				<!--정정항목 란번호-->
+				<wco:SequenceNumeric>001</wco:SequenceNumeric>
+				<!--규격번호-->
+				<wco:DocumentSectionCode>000000</wco:DocumentSectionCode>
+				<!--항목번호-->
+				<wco:TagID>123</wco:TagID>
+			</wco:Pointer>
+		</wco:Amendment>
+		<wco:ConsignmentItem>
+			<wco:Commodity>
+				<!--차대관리번호-->
+				<wco:ID>001</wco:ID>
+			</wco:Commodity>
+		</wco:ConsignmentItem>
+		<wco:TransportEquipment>
+			<!--컨테이너 일련번호-->
+			<wco:ID>1</wco:ID>
+		</wco:TransportEquipment>
+	</wco:Consignment>
+	<wco:Exporter>
+		<!--수출화주 통관고유부호-->
+		<wco:ID>00000000000000</wco:ID>
+		<!--수출화주 상호 또는 성명-->
+		<wco:Name>김수출</wco:Name>
+	</wco:Exporter>
+	<wco:Submitter>
+		<!--신고인 부호-->
+		<wco:ID>00001</wco:ID>
+	</wco:Submitter>
+</wco:Declaration>

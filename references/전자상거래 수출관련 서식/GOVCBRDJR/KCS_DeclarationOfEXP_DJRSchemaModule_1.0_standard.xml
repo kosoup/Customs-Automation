@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wco:Declaration
+    xmlns:kcs="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJRSchemaModule:1:0"
+    xmlns:wco="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJRSchemaModule:1:0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:kr:gov:kcs:data:standard:KCS_DeclarationOfEXP_DJRSchemaModule:1:0 ../../schema4G/kcs/data/standard/KCS_DeclarationOfEXP_DJRSchemaModule_1.0_standard.xsd">
+    <!--전송구분-->
+    <wco:FunctionCode>01</wco:FunctionCode>
+    <!--신고번호-->
+    <wco:ID>99999999</wco:ID>
+    <!--문서형태구분-->
+    <wco:TypeCode>GOVCBRDJP</wco:TypeCode>
+    <!--신고구분-->
+    <wco:TransactionNatureCode>01</wco:TransactionNatureCode>
+    
+    <wco:AdditionalDocument>
+        <!--주문번호-->
+        <wco:ID>A123456</wco:ID>
+    </wco:AdditionalDocument>
+    
+     <wco:BorderTransportMeans>
+        <!--출항일시-->
+        <wco:DepartureDateTime>20191108123030</wco:DepartureDateTime>
+        <!--선박항공편명-->
+        <wco:ScheduledConveyanceID>A123456</wco:ScheduledConveyanceID>
+        <!--해상/항공 구분-->
+        <wco:TypeCode>01</wco:TypeCode>
+    </wco:BorderTransportMeans>
+    
+    <wco:Exporter>
+        <!--수출화주 신고인 부호-->
+        <wco:ID>99999999</wco:ID>
+    </wco:Exporter>
+	
+	<wco:GoodsShipment>
+        <wco:AdditionalDocument>
+            <!--배송신고번호-->
+            <wco:ID>9999999999</wco:ID>
+        </wco:AdditionalDocument>
+         <wco:Destination>
+            <!--목적국-->
+            <wco:CountryCode>KOR</wco:CountryCode>
+        </wco:Destination>
+        <wco:GovernmentAgencyGoodsItem>
+            <wco:Commodity>
+                <!--이행수량-->
+                <wco:CountQuantity>999999999</wco:CountQuantity>
+                <!--이행중량-->
+                <wco:SizeMeasure>999999</wco:SizeMeasure>
+            </wco:Commodity>
+        </wco:GovernmentAgencyGoodsItem>
+    </wco:GoodsShipment>
+    
+    <wco:PreviousDocument>
+        <!--전자상거래수출신고번호-->
+        <wco:ID>A123456</wco:ID>
+    </wco:PreviousDocument>
+</wco:Declaration>

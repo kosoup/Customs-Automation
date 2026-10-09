@@ -3,6 +3,7 @@ from decimal import Decimal
 from typing import List
 
 from app.schemas.declaration import ValidationError
+from app.services.constants import INCOTERMS_VALID
 
 
 def validate_declaration(data: dict, items: list) -> List[ValidationError]:
@@ -39,9 +40,8 @@ def validate_declaration(data: dict, items: list) -> List[ValidationError]:
         errors.append(ValidationError(field="currency_code", message="통화코드는 3자리 영문 대문자여야 합니다"))
 
     # 인코텀스
-    valid_incoterms = {"EXW", "FCA", "FAS", "FOB", "CFR", "CIF", "CPT", "CIP", "DAP", "DPU", "DDP"}
     incoterms = data.get("incoterms")
-    if incoterms and incoterms.upper() not in valid_incoterms:
+    if incoterms and incoterms.upper() not in INCOTERMS_VALID:
         errors.append(ValidationError(field="incoterms", message=f"유효하지 않은 인코텀스: {incoterms}"))
 
     # 중량: 순중량 <= 총중량
